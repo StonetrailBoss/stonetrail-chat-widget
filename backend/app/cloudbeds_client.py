@@ -33,7 +33,7 @@ def create_cloudbeds_booking_link(
 ):
     base_url = os.getenv(
         "BOOKING_ENGINE_URL",
-        "https://hotels.cloudbeds.com/reservation/YOUR_PROPERTY_ID",
+        "https://us2.cloudbeds.com/reservation/XsjT4D",
     )
 
     params = {
