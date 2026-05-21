@@ -1,43 +1,25 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.routes.chat import router as chat_router
+from app.routes.availability import router as availability_router
+from app.routes.booking import router as booking_router
+
 app = FastAPI(title="Stonetrail Chat Backend")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Later restrict to your website domain
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+app.include_router(chat_router)
+app.include_router(availability_router)
+app.include_router(booking_router)
+
+
 @app.get("/")
 def health_check():
     return {"status": "online", "service": "stonetrail-chat-backend"}
-
-@app.post("/api/chat/message")
-async def chat_message(payload: dict):
-    return {
-        "reply": "Welcome to Stonetrail Villas & Suites. How can I help you today?"
-    }
-
-@app.post("/api/availability/search")
-async def availability_search(payload: dict):
-    return {
-        "results": [
-            {
-                "roomTypeId": "deluxe-double",
-                "name": "Deluxe Double Room",
-                "description": "Spacious room with patio and Caribbean Sea views.",
-                "rate": 225,
-                "currency": "USD",
-                "imageUrl": ""
-            }
-        ]
-    }
-
-@app.post("/api/booking/link")
-async def booking_link(payload: dict):
-    return {
-        "bookingUrl": "https://hotels.cloudbeds.com/reservation/YOUR_PROPERTY_ID"
-    }
