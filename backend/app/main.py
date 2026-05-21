@@ -1,88 +1,188 @@
 import os
-import requests
+import json
+from typing import Dict, Any, List
+
 from openai import OpenAI
-from dotenv import load_dotenv
 
-load_dotenv()
-
-CLOUDBEDS_API_KEY = os.getenv("CLOUDBEDS_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-BOOKING_ENGINE_URL = os.getenv("BOOKING_ENGINE_URL")
-
-
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
-app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+from app.services.cloudbeds_client import (
+    check_cloudbeds_availability,
+    create_cloudbeds_booking_link,
 )
 
-@app.get("/")
-def health():
-    return {"status": "online"}
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
 
 
+SYSTEM_PROMPT = """
+You are the Stonetrail Villas & Suites booking assistant.
 
-openai_client = OpenAI(api_key=OPENAI_API_KEY)
+Your job is to help website visitors check availability, compare rooms,
+understand hotel policies, and book directly.
 
-@app.post("/api/chat/message")
-async def chat_message(payload: dict):
-    user_message = payload.get("message", "")
+Be warm, professional, concise, and hospitality-focused.
 
-    response = openai_client.responses.create(
-        model="gpt-4.1-mini",
-        input=[
-            {
-                "role": "system",
-                "content": """
-                You are the booking assistant for Stonetrail Villas & Suites
-                in St. Vincent and the Grenadines. Help guests with room
-                questions, availability, policies, airport transfers, and
-                direct booking. Be polite, concise, and hospitality-focused.
-                """
+Before checking availability, collect:
+- check-in date
+- check-out date
+- number of adults
+- number of children
+- number of rooms
+
+Never invent availability, rates, taxes, fees, or policies.
+Use Cloudbeds data as the source of truth.
+
+Do not collect credit card information in chat.
+
+For payments and final reservation confirmation, send the guest to the
+official Cloudbeds booking page.
+
+Escalate to staff when:
+- guest asks for discounts
+- guest wants group booking
+- guest wants long-stay pricing
+- guest has a complaint
+- guest asks something you cannot verify
+"""
+
+
+TOOLS = [
+    {
+        "type": "function",
+        "name": "check_availability",
+        "description": "Check room availability and rates from Cloudbeds.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "check_in": {"type": "string", "description": "YYYY-MM-DD"},
+                "check_out": {"type": "string", "description": "YYYY-MM-DD"},
+                "adults": {"type": "integer"},
+                "children": {"type": "integer"},
+                "rooms": {"type": "integer"},
             },
-            {
-                "role": "user",
-                "content": user_message
-            }
-        ]
-    )
-
-    return {
-        "reply": response.output_text
-    }
-
-
-
-
-def cloudbeds_get(endpoint: str, params: dict | None = None):
-    response = requests.get(
-        f"{CLOUDBEDS_BASE_URL}/{endpoint}",
-        headers={
-            "Authorization": f"Bearer {CLOUDBEDS_API_KEY}"
+            "required": ["check_in", "check_out", "adults", "children", "rooms"],
+            "additionalProperties": False,
         },
-        params=params or {},
-        timeout=20
+    },
+    {
+        "type": "function",
+        "name": "get_booking_link",
+        "description": "Generate a Cloudbeds booking link for the guest.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "check_in": {"type": "string", "description": "YYYY-MM-DD"},
+                "check_out": {"type": "string", "description": "YYYY-MM-DD"},
+                "adults": {"type": "integer"},
+                "children": {"type": "integer"},
+                "rooms": {"type": "integer"},
+                "room_type_id": {"type": "string"},
+            },
+            "required": [
+                "check_in",
+                "check_out",
+                "adults",
+                "children",
+                "rooms",
+                "room_type_id",
+            ],
+            "additionalProperties": False,
+        },
+    },
+]
+
+
+def _run_tool(name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Routes OpenAI tool calls to your backend functions.
+    """
+
+    if name == "check_availability":
+        return check_cloudbeds_availability(
+            check_in=arguments["check_in"],
+            check_out=arguments["check_out"],
+            adults=arguments["adults"],
+            children=arguments["children"],
+            rooms=arguments["rooms"],
+        )
+
+    if name == "get_booking_link":
+        return create_cloudbeds_booking_link(
+            check_in=arguments["check_in"],
+            check_out=arguments["check_out"],
+            adults=arguments["adults"],
+            children=arguments["children"],
+            rooms=arguments["rooms"],
+            room_type_id=arguments["room_type_id"],
+        )
+
+    return {"error": f"Unknown tool: {name}"}
+
+
+def run_hotel_agent(
+    user_message: str,
+    conversation_history: List[Dict[str, str]] | None = None,
+) -> Dict[str, Any]:
+    """
+    Main function called by your FastAPI route.
+    """
+
+    conversation_history = conversation_history or []
+
+    input_messages = [
+        {
+            "role": "system",
+            "content": SYSTEM_PROMPT,
+        }
+    ]
+
+    input_messages.extend(conversation_history)
+
+    input_messages.append(
+        {
+            "role": "user",
+            "content": user_message,
+        }
     )
 
-    response.raise_for_status()
-    return response.json()
+    response = client.responses.create(
+        model=MODEL,
+        input=input_messages,
+        tools=TOOLS,
+    )
 
- 
- 
+    tool_outputs = []
 
-@app.get("/api/test-env")
-def test_env():
+    for item in response.output:
+        if item.type == "function_call":
+            tool_args = json.loads(item.arguments)
+
+            tool_result = _run_tool(
+                name=item.name,
+                arguments=tool_args,
+            )
+
+            tool_outputs.append(
+                {
+                    "type": "function_call_output",
+                    "call_id": item.call_id,
+                    "output": json.dumps(tool_result),
+                }
+            )
+
+    if tool_outputs:
+        follow_up = client.responses.create(
+            model=MODEL,
+            input=input_messages + response.output + tool_outputs,
+            tools=TOOLS,
+        )
+
+        return {
+            "reply": follow_up.output_text,
+            "raw": follow_up.model_dump(),
+        }
+
     return {
-        "cloudbeds_loaded": bool(CLOUDBEDS_API_KEY),
-        "openai_loaded": bool(OPENAI_API_KEY),
-        "booking_url_loaded": bool(BOOKING_ENGINE_URL)
+        "reply": response.output_text,
+        "raw": response.model_dump(),
     }
-
- 
