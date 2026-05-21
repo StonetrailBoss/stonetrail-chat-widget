@@ -15,7 +15,7 @@ import { motion, AnimatePresence } from "framer-motion";
  * stored as environment variables. Never expose Cloudbeds API keys here.
  */
 
-const API_BASE_URL = "https://your-render-backend.onrender.com";
+const API_BASE_URL = "https://stonetrail-chat-widget.onrender.com";
 
 const quickActions = [
   "Check availability",

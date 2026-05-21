@@ -1,4 +1,6 @@
 import os
+import requests
+from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -25,32 +27,55 @@ app.add_middleware(
 def health():
     return {"status": "online"}
 
+
+
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
+
 @app.post("/api/chat/message")
 async def chat_message(payload: dict):
-    return {
-        "reply": "Welcome to Stonetrail Villas. How can I help you today?"
-    }
+    user_message = payload.get("message", "")
 
-@app.post("/api/availability/search")
-async def availability_search(payload: dict):
-    return {
-        "results": [
+    response = openai_client.responses.create(
+        model="gpt-4.1-mini",
+        input=[
             {
-                "roomTypeId": "deluxe-double",
-                "name": "Deluxe Double Room",
-                "description": "Ocean view with patio",
-                "rate": 225,
-                "currency": "USD",
-                "imageUrl": "https://your-image-url.com/room.jpg"
+                "role": "system",
+                "content": """
+                You are the booking assistant for Stonetrail Villas & Suites
+                in St. Vincent and the Grenadines. Help guests with room
+                questions, availability, policies, airport transfers, and
+                direct booking. Be polite, concise, and hospitality-focused.
+                """
+            },
+            {
+                "role": "user",
+                "content": user_message
             }
         ]
+    )
+
+    return {
+        "reply": response.output_text
     }
 
-@app.post("/api/booking/link")
-async def booking_link(payload: dict):
-    return {
-        "bookingUrl": "https://your-cloudbeds-booking-link"
-    }
+
+
+
+def cloudbeds_get(endpoint: str, params: dict | None = None):
+    response = requests.get(
+        f"{CLOUDBEDS_BASE_URL}/{endpoint}",
+        headers={
+            "Authorization": f"Bearer {CLOUDBEDS_API_KEY}"
+        },
+        params=params or {},
+        timeout=20
+    )
+
+    response.raise_for_status()
+    return response.json()
+
+ 
+ 
 
 @app.get("/api/test-env")
 def test_env():
@@ -59,3 +84,5 @@ def test_env():
         "openai_loaded": bool(OPENAI_API_KEY),
         "booking_url_loaded": bool(BOOKING_ENGINE_URL)
     }
+
+ 
