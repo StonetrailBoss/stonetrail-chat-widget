@@ -5,17 +5,11 @@ from urllib.parse import urlencode
 def check_cloudbeds_availability(
     check_in: str,
     check_out: str,
-    adults: int,
+    adults: int = 2,
     children: int = 0,
     rooms: int = 1,
 ):
-    """
-    Temporary mock function.
-    Replace later with real Cloudbeds API call.
-    """
-
     return {
-        "available": True,
         "results": [
             {
                 "roomTypeId": "deluxe-double",
@@ -23,24 +17,24 @@ def check_cloudbeds_availability(
                 "description": "Spacious room with patio and Caribbean Sea views.",
                 "rate": 225,
                 "currency": "USD",
+                "imageUrl": "",
             }
-        ],
+        ]
     }
 
 
 def create_cloudbeds_booking_link(
     check_in: str,
     check_out: str,
-    adults: int,
+    adults: int = 2,
     children: int = 0,
     rooms: int = 1,
     room_type_id: str | None = None,
 ):
-    """
-    Creates a booking engine link.
-    """
-
-    base_url = os.getenv("BOOKING_ENGINE_URL", "https://us2.cloudbeds.com/reservation/XsjT4D")
+    base_url = os.getenv(
+        "BOOKING_ENGINE_URL",
+        "https://hotels.cloudbeds.com/reservation/YOUR_PROPERTY_ID",
+    )
 
     params = {
         "checkin": check_in,
