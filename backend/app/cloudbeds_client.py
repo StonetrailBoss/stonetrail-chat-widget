@@ -9,18 +9,7 @@ def check_cloudbeds_availability(
     children: int = 0,
     rooms: int = 1,
 ):
-    return {
-        "results": [
-            {
-                "roomTypeId": "deluxe-double",
-                "name": "Deluxe Double Room",
-                "description": "Spacious room with patio and Caribbean Sea views.",
-                "rate": 225,
-                "currency": "USD",
-                "imageUrl": "",
-            }
-        ]
-    }
+
 
 
 def create_cloudbeds_booking_link(
@@ -32,8 +21,7 @@ def create_cloudbeds_booking_link(
     room_type_id: str | None = None,
 ):
     base_url = os.getenv(
-        "BOOKING_ENGINE_URL",
-        "https://us2.cloudbeds.com/reservation/XsjT4D",
+        "BOOKING_ENGINE_URL","https://us2.cloudbeds.com/reservation/XsjT4D",
     )
 
     params = {
