@@ -9,8 +9,24 @@ def check_cloudbeds_availability(
     children: int = 0,
     rooms: int = 1,
 ):
-
-
+    # Placeholder implementation - replace with actual Cloudbeds API call
+    return {
+        "available": True,
+        "rooms": [
+            {
+                "roomTypeId": "123",
+                "name": "Ocean View Suite",
+                "rate": 350.00,
+                "currency": "USD",
+            },
+            {
+                "roomTypeId": "456",
+                "name": "Garden View Room",
+                "rate": 250.00,
+                "currency": "USD",
+            },
+        ],
+    }
 
 def create_cloudbeds_booking_link(
     check_in: str,
