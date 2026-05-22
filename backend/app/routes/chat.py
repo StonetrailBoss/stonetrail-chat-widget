@@ -12,7 +12,7 @@ class ChatRequest(BaseModel):
     pageUrl: str | None = None
 
 
-@router.post("/message")
+@router.post("/api/chat/message")
 async def chat_message(payload: ChatRequest):
     reply = run_hotel_agent(payload.message)
 
