@@ -20,3 +20,43 @@ async def chat_message(payload: dict):
             {"label": "Talk to staff"},
         ],
     }
+
+from pydantic import BaseModel
+from app.openai_client import client
+from app.cloudbeds_client import check_availability
+import json
+
+router = APIRouter()
+
+class ChatRequest(BaseModel):
+    message: str
+
+
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "check_availability",
+            "description": "Check hotel room availability",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "check_in": {
+                        "type": "string"
+                    },
+                    "check_out": {
+                        "type": "string"
+                    },
+                    "adults": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "check_in",
+                    "check_out",
+                    "adults"
+                ]
+            }
+        }
+    }
+]
