@@ -1,3 +1,8 @@
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -23,3 +28,4 @@ app.include_router(booking_router)
 @app.get("/")
 def health_check():
     return {"status": "online", "service": "stonetrail-chat-backend"}
+
