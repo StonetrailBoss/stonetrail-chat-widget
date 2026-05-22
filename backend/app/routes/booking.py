@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.cloudbeds_client import create_cloudbeds_booking_link
+from app.cloudbeds_client import create_booking_link
 
 router = APIRouter()
 

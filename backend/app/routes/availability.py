@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from app.cloudbeds_client import check_cloudbeds_availability
+from app.cloudbeds_client import check_availability
 
 router = APIRouter()
 

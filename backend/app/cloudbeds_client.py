@@ -1,8 +1,21 @@
 import os
-from urllib.parse import urlencode
+import requests
+
+CLOUDBEDS_API_KEY = os.getenv("CLOUDBEDS_API_KEY")
+CLOUDBEDS_BASE_URL = os.getenv("CLOUDBEDS_BASE_URL")
+
+headers = {
+    "Authorization": f"Bearer {CLOUDBEDS_API_KEY}",
+    "Content-Type": "application/json"
+}
+
+headers = {
+    "Authorization": f"Bearer {CLOUDBEDS_API_KEY}",
+    "Content-Type": "application/json"
+}
 
 
-def check_cloudbeds_availability(
+def check_availability(
     check_in: str,
     check_out: str,
     adults: int = 2,
@@ -28,7 +41,7 @@ def check_cloudbeds_availability(
         ],
     }
 
-def create_cloudbeds_booking_link(
+def create_booking_link(
     check_in: str,
     check_out: str,
     adults: int = 2,
