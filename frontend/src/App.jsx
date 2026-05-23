@@ -1,11 +1,7 @@
-import StonetrailChatWidget from "./StonetrailChatWidget";
+import StonetrailChatWidget from "./StonetrailChatWidget.jsx";
 
 function App() {
-  return (
-    <div>
-      <StonetrailChatWidget />
-    </div>
-  );
+  return <StonetrailChatWidget />;
 }
 
 export default App;
