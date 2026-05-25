@@ -6,6 +6,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.routes.chat import router as chat_router
 from app.routes.availability import router as availability_router
 from app.routes.booking import router as booking_router
+from app.routes import whatsapp as whatsapp_router
+
+from fastapi import FastAPI
+
+
 
 load_dotenv()
 
@@ -22,6 +27,7 @@ app.add_middleware(
 app.include_router(chat_router)
 app.include_router(availability_router)
 app.include_router(booking_router)
+app.include_router(whatsapp_router)
 
 @app.get("/")
 def health_check():

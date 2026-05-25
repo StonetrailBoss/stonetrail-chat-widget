@@ -1,15 +1,17 @@
 backend/
 └── app/
-    ├── __init__.py
     ├── main.py
     ├── cloudbeds_client.py
     ├── openai_client.py
+    ├── whatsapp_client.py          # NEW
     ├── routes/
-    │   ├── __init__.py
     │   ├── chat.py
     │   ├── availability.py
-    │   └── booking.py
+    │   ├── booking.py
+    │   └── whatsapp.py             # NEW
     ├── services/
-    │   └── __init__.py
+    │   ├── __init__.py
+    │   ├── conversation_service.py  # NEW
+    │   └── whatsapp_service.py      # NEW
     └── models/
         └── __init__.py
