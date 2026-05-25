@@ -20,7 +20,7 @@ def _actions_for(message: str):
     return [
         {"label": "Check availability"},
         {"label": "View room options"},
-        {"label": "Airport transfer"},
+        #{"label": "Airport transfer"},
         {"label": "Talk to staff"},
     ]
 
