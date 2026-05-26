@@ -88,6 +88,7 @@ export default function StonetrailChatWidget() {
           type: data.type || "text",
           content: data.reply || "I can help with that. Would you like to check availability?",
           actions: data.actions || [],
+          handoff: data.handoff || null,
         },
       ]);
     } catch (error) {
@@ -220,15 +221,26 @@ export default function StonetrailChatWidget() {
                       {message.content}
                       {message.actions?.length > 0 && (
                         <div className="mt-2 flex flex-wrap gap-2">
-                          {message.actions.map((action, i) => (
-                            <button
-                              key={i}
-                              onClick={() => sendMessage(action.label || action)}
-                              className="rounded-full border border-neutral-200 px-3 py-1 text-xs hover:bg-neutral-50"
-                            >
-                              {action.label || action}
-                            </button>
-                          ))}
+                          {message.actions.map((action, i) => {
+                            const label = action.label || action;
+                            const url = action.url || (label === "Continue on WhatsApp" ? message.handoff?.url : null);
+
+                            return (
+                              <button
+                                key={i}
+                                onClick={() => {
+                                  if (url) {
+                                    window.open(url, "_blank", "noopener,noreferrer");
+                                    return;
+                                  }
+                                  sendMessage(label);
+                                }}
+                                className="rounded-full border border-neutral-200 px-3 py-1 text-xs hover:bg-neutral-50"
+                              >
+                                {label}
+                              </button>
+                            );
+                          })}
                         </div>
                       )}
                     </div>

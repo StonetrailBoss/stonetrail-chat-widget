@@ -1,11 +1,18 @@
 import os
 from fastapi import APIRouter, Request, HTTPException
+from pydantic import BaseModel
+
 from app.services.whatsapp_service import handle_incoming_whatsapp_message
 from app.whatsapp_client import send_whatsapp_text
 
 router = APIRouter(prefix="/whatsapp", tags=["whatsapp"])
 
 VERIFY_TOKEN = os.getenv("WHATSAPP_VERIFY_TOKEN")
+
+
+class WhatsAppSendRequest(BaseModel):
+    to: str
+    message: str
 
 
 @router.get("/webhook")
@@ -29,5 +36,5 @@ async def receive_webhook(request: Request):
 
 
 @router.post("/send")
-async def send_message(to: str, message: str):
-    return await send_whatsapp_text(to, message)
+async def send_message(payload: WhatsAppSendRequest):
+    return await send_whatsapp_text(payload.to, payload.message)
