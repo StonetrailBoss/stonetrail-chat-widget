@@ -13,12 +13,12 @@ load_dotenv()
 app = FastAPI(title="Stonetrail Chat Backend")
 
 allowed_origins = [
-    origin.strip()
-    for origin in os.getenv(
-        "ALLOWED_ORIGINS",
-        "http://localhost:5173,https://www.stonetrailvillas.com,https://stonetrailvillas.com",
-    ).split(",")
-    if origin.strip()
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://stonetrailvillas.com",
+    "https://www.stonetrailvillas.com",
+    # add your actual deployed frontend URL here
+    "https://stonetrail-chat-widget.onrender.com",
 ]
 
 app.add_middleware(
