@@ -12,18 +12,18 @@ load_dotenv()
 
 app = FastAPI(title="Stonetrail Chat Backend")
 
-allowed_origins = [
-    "http://localhost:5173",
-    "http://localhost:3000",
-    "https://stonetrailvillas.com",
-    "https://www.stonetrailvillas.com",
+#allowed_origins = [
+#    "http://localhost:5173",
+#    "http://localhost:3000",
+#    "https://stonetrailvillas.com",
+#    "https://www.stonetrailvillas.com",
     # add your actual deployed frontend URL here
-    "https://stonetrail-chat-widget.onrender.com",
-]
+#    "https://stonetrail-chat-widget.onrender.com",
+#]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
