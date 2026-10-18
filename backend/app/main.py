@@ -12,22 +12,24 @@ load_dotenv()
 
 app = FastAPI(title="Stonetrail Chat Backend")
 
-#allowed_origins = [
-#    "http://localhost:5173",
-#    "http://localhost:3000",
-#    "https://stonetrailvillas.com",
-#    "https://www.stonetrailvillas.com",
-    # add your actual deployed frontend URL here
-#    "https://stonetrail-chat-widget.onrender.com",
-#]
-
+allowed_origins = [origin.strip() for origin in os.getenv(
+    "ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000"
+).split(",") if origin.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+from app.database import Base, engine
+from app.routes.admin import router as admin_router
+app.include_router(admin_router)
+
+@app.get("/healthz")
+def readiness():
+    return {"status": "ok"}
 
 app.include_router(chat_router)
 app.include_router(availability_router)

@@ -20,8 +20,8 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000
 const quickActions = [
   "Check availability",
   "View room options",
-  "Airport transfer",
-  "Talk to staff",
+  "Call the Hotel",
+  "Make a reservation",
 ];
 
 function createSessionId() {
