@@ -2,6 +2,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import engine_from_config, pool
 from app.database import Base, DATABASE_URL
+from app.models import messaging
 from app.models import inbox
 from app.models import core  # noqa: F401
 config = context.config

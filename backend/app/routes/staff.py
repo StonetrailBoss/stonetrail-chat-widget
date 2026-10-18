@@ -1,4 +1,4 @@
-import secrets
+import secrets, os
 from datetime import datetime, timedelta, timezone
 from typing import Literal
 from fastapi import APIRouter, Depends, HTTPException, Header
@@ -8,6 +8,9 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.core import Property, Guest, Reservation
 from app.models.inbox import Staff, StaffSession, Conversation, Message, AuditEvent
+from app.models.messaging import ChannelConnection, DeliveryJob, ReplyRequest
+from app.services.messaging_service import queue_reply, cancel_ai, key
+from app.whatsapp_client import configured
 from app.staff_security import hash_password, verify_password, token_hash, current_staff, manager
 
 router = APIRouter(prefix="/api/staff", tags=["staff inbox"])
@@ -65,7 +68,7 @@ class NewConversation(BaseModel):
     reservation_id: str | None = None
 
 def scoped(db,user,cid):
-    item=db.scalar(select(Conversation).where(Conversation.id==cid,Conversation.property_id==user.property_id))
+    item=db.scalar(select(Conversation).where(Conversation.id==cid,Conversation.property_id==user.property_id).with_for_update())
     if not item: raise HTTPException(404,"Conversation not found")
     return item
 
@@ -94,7 +97,7 @@ def create_conversation(data: NewConversation,user: Staff = Depends(current_staf
 @router.get("/conversations/{cid}")
 def detail(cid: str,user: Staff=Depends(current_staff),db: Session=Depends(get_db)):
     c=scoped(db,user,cid)
-    return {**summary(c),"messages":[{"id":m.id,"body":m.body,"kind":m.kind,"delivery_status":m.delivery_status,"created_at":m.created_at} for m in db.scalars(select(Message).where(Message.conversation_id==cid).order_by(Message.created_at,Message.id))]}
+    return {**summary(c),"messages":[{"id":m.id,"body":m.body,"kind":m.kind,"delivery_status":m.delivery_status,"created_at":m.created_at,"error_code":(db.scalar(select(DeliveryJob.error_code).where(DeliveryJob.message_id==m.id)))} for m in db.scalars(select(Message).where(Message.conversation_id==cid).order_by(Message.created_at,Message.id))]}
 
 class Update(BaseModel):
     status: Literal["open","pending","closed"] | None = None
@@ -112,6 +115,7 @@ def update(cid: str,data: Update,user: Staff=Depends(current_staff),db: Session=
         if k in ("status","human_owned") and v is None: raise HTTPException(422,"Value cannot be null")
         setattr(c,k,v)
     if c.assigned_to: c.human_owned=True
+    if c.human_owned or c.status=="closed": cancel_ai(db,cid)
     audit(db,user,"conversation_updated",cid);db.commit();return summary(c)
 
 class NewMessage(BaseModel):
@@ -119,13 +123,45 @@ class NewMessage(BaseModel):
     kind: Literal["note","reply"] = "note"
 
 @router.post("/conversations/{cid}/messages",status_code=201)
-def message(cid: str,data: NewMessage,user: Staff=Depends(current_staff),db: Session=Depends(get_db)):
+def message(cid: str,data: NewMessage,user: Staff=Depends(current_staff),db: Session=Depends(get_db),idempotency_key: str | None=Header(default=None)):
     writable(user);c=scoped(db,user,cid)
+    reqkey=None
+    if data.kind=="reply" and c.channel=="whatsapp":
+        if not idempotency_key or not 16<=len(idempotency_key)<=128:raise HTTPException(422,"Idempotency-Key (16–128 characters) required for delivery")
+        reqkey=key(user.property_id,user.id,idempotency_key)
+        existing=db.get(ReplyRequest,reqkey)
+        if existing:
+            old=db.get(Message,existing.message_id)
+            if old.conversation_id!=cid or old.body!=data.body:raise HTTPException(409,"Idempotency key already used for another reply")
+            return {"status":old.delivery_status,"message_id":old.id,"detail":"Existing reply returned; no duplicate queued"}
     if c.status=="closed": raise HTTPException(409,"Reopen conversation before adding messages")
-    db.add(Message(conversation_id=cid,staff_id=user.id,body=data.body,kind=data.kind))
+    m=Message(conversation_id=cid,staff_id=user.id,body=data.body,kind=data.kind)
+    db.add(m)
+    if data.kind=="reply" and c.channel=="whatsapp":
+        if os.getenv("WHATSAPP_SEND_ENABLED","false").lower()!="true" or not configured():raise HTTPException(409,"WhatsApp sending is disabled or incomplete")
+        c.human_owned=True;cancel_ai(db,cid)
+        queue_reply(db,c,m)
+        db.add(ReplyRequest(request_key=reqkey,message_id=m.id))
     audit(db,user,"message_"+data.kind,cid);db.commit()
-    return {"status":"local_only","detail":"Saved locally; no external message sent"}
+    return {"status":m.delivery_status,"message_id":m.id,"detail":"Queued for WhatsApp delivery" if m.delivery_status=="queued" else "Saved locally; no external message sent"}
+
+class WhatsAppConnection(BaseModel):
+    phone_number_id: str=Field(pattern=r"^\d{5,100}$")
+
+@router.post("/channels/whatsapp")
+def connect_whatsapp(data:WhatsAppConnection,user:Staff=Depends(manager),db:Session=Depends(get_db)):
+    if data.phone_number_id!=os.getenv("WHATSAPP_PHONE_NUMBER_ID"):raise HTTPException(422,"Phone number ID must match the configured backend account")
+    existing=db.scalar(select(ChannelConnection).where(ChannelConnection.phone_number_id==data.phone_number_id))
+    if existing and existing.property_id!=user.property_id:raise HTTPException(409,"Account already mapped")
+    if not existing:
+        existing=ChannelConnection(property_id=user.property_id,phone_number_id=data.phone_number_id)
+        db.add(existing);db.flush();audit(db,user,"whatsapp_account_mapped",existing.id);db.commit()
+    return {"id":existing.id,"status":"configured_unverified"}
 
 @router.get("/channels")
-def channels(user: Staff=Depends(current_staff)):
-    return [{"channel":c,"status":"not_connected"} for c in ["whatsapp","instagram","email","booking.com","website"]]
+def channels(user: Staff=Depends(current_staff),db:Session=Depends(get_db)):
+    connection=db.scalar(select(ChannelConnection).where(ChannelConnection.property_id==user.property_id))
+    state="not_connected"
+    if connection:
+        state="verified_send_receive" if connection.inbound_at and connection.delivered_at else "inbound_verified" if connection.inbound_at else "configured_unverified"
+    return [{"channel":"whatsapp","status":state,"sending_enabled":os.getenv("WHATSAPP_SEND_ENABLED","false").lower()=="true","configured":configured(),"last_inbound_at":connection.inbound_at if connection else None,"last_delivered_at":connection.delivered_at if connection else None}]+[{"channel":c,"status":"not_connected"} for c in ["instagram","email","booking.com","website"]]

@@ -1,3 +1,5 @@
+> Updated by PHASE3_README.md: WhatsApp is now bridged into the persistent inbox; read the Phase 3 guide for current behavior and limits.
+
 # Staff authentication and persistent inbox — development increment
 
 Extends the supplied Phase 1 FastAPI + React/Vite code. Hosting remains Render with render.yaml. No AWS infrastructure is introduced. This is an integration foundation, not a complete guest experience platform or a production launch.

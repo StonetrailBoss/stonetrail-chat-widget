@@ -1,8 +1,6 @@
 import os
 from urllib.parse import quote
 
-from app.openai_client import run_hotel_agent
-from app.whatsapp_client import send_whatsapp_text
 
 DEFAULT_HANDOFF_MESSAGE = (
     "Hello Stonetrail Villas, I would like to speak with someone about my stay."
@@ -50,40 +48,3 @@ def build_whatsapp_handoff_response(session_id: str | None = None) -> dict:
     }
 
 
-async def handle_incoming_whatsapp_message(payload: dict):
-    """
-    Handles inbound WhatsApp webhook events from Meta.
-    This is for guests who message the hotel directly through WhatsApp.
-    """
-    try:
-        entries = payload.get("entry", [])
-
-        for entry in entries:
-            changes = entry.get("changes", [])
-
-            for change in changes:
-                value = change.get("value", {})
-                messages = value.get("messages", [])
-
-                for message in messages:
-                    from_number = message.get("from")
-                    message_type = message.get("type")
-
-                    if message_type != "text":
-                        await send_whatsapp_text(
-                            from_number,
-                            "Thank you for contacting Stonetrail Villas. A member of our team will review your message shortly."
-                        )
-                        continue
-
-                    text = message.get("text", {}).get("body", "")
-
-                    if not text:
-                        continue
-
-                    reply = run_hotel_agent(text)
-
-                    await send_whatsapp_text(from_number, reply)
-
-    except Exception as e:
-        print("WhatsApp webhook error:", e)

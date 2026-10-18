@@ -1,50 +1,37 @@
-import os
-from fastapi import APIRouter, Request, HTTPException, Depends
-from app.routes.admin import require_admin
-from pydantic import BaseModel
+import hashlib,hmac,json,os
+from fastapi import APIRouter,Request,HTTPException,Depends
+from fastapi.responses import PlainTextResponse
+from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
+from app.database import get_db
+from app.services.messaging_service import ingest
+router=APIRouter(prefix="/whatsapp",tags=["whatsapp"])
 
-from app.services.whatsapp_service import handle_incoming_whatsapp_message
-from app.whatsapp_client import send_whatsapp_text
-
-router = APIRouter(prefix="/whatsapp", tags=["whatsapp"])
-
-VERIFY_TOKEN = os.getenv("WHATSAPP_VERIFY_TOKEN")
-
-
-class WhatsAppSendRequest(BaseModel):
-    to: str
-    message: str
-
-
-@router.get("/webhook")
-async def verify_webhook(request: Request):
-    params = request.query_params
-
-    if (
-        params.get("hub.mode") == "subscribe"
-        and VERIFY_TOKEN
-        and params.get("hub.verify_token") == VERIFY_TOKEN
-    ):
-        return int(params.get("hub.challenge"))
-
-    raise HTTPException(status_code=403, detail="Invalid verify token")
-
+@router.get("/webhook",response_class=PlainTextResponse)
+def verify_webhook(request:Request):
+    p=request.query_params;expected=os.getenv("WHATSAPP_VERIFY_TOKEN","")
+    if not expected or p.get("hub.mode")!="subscribe" or not hmac.compare_digest(p.get("hub.verify_token",""),expected):raise HTTPException(403,"Invalid verify token")
+    return p.get("hub.challenge","")
 
 @router.post("/webhook")
-async def receive_webhook(request: Request):
-    import hashlib, hmac
-    secret = os.getenv("META_APP_SECRET")
-    signature = request.headers.get("x-hub-signature-256", "")
-    body = await request.body()
-    if not secret or not signature.startswith("sha256=") or not hmac.compare_digest(
-        signature, "sha256=" + hmac.new(secret.encode(), body, hashlib.sha256).hexdigest()
-    ):
-        raise HTTPException(status_code=403, detail="Invalid webhook signature")
-    payload = await request.json()
-    await handle_incoming_whatsapp_message(payload)
-    return {"status": "ok"}
+async def receive_webhook(request:Request,db:Session=Depends(get_db)):
+    body=await request.body()
+    if len(body)>1048576:raise HTTPException(413,"Webhook too large")
+    secret=os.getenv("META_APP_SECRET","");signature=request.headers.get("x-hub-signature-256","")
+    expected="sha256="+hmac.new(secret.encode(),body,hashlib.sha256).hexdigest()
+    if not secret or not hmac.compare_digest(signature,expected):raise HTTPException(403,"Invalid webhook signature")
+    try:payload=json.loads(body)
+    except ValueError:raise HTTPException(422,"Invalid JSON")
+    try:
+        result=ingest(db,payload);db.commit()
+    except IntegrityError:
+        db.rollback()
+        # A concurrent duplicate won the unique constraint. Reconcile every item in the batch.
+        result=ingest(db,payload);db.commit()
+    except (AttributeError,TypeError,ValueError):
+        db.rollback();raise HTTPException(422,"Invalid webhook payload shape")
+    return {"status":"ok",**result}
 
-
-@router.post("/send", dependencies=[Depends(require_admin)])
-async def send_message(payload: WhatsAppSendRequest):
-    return await send_whatsapp_text(payload.to, payload.message)
+@router.post("/send")
+def legacy_send_disabled():
+    raise HTTPException(410,"Use the authenticated staff inbox delivery queue")
