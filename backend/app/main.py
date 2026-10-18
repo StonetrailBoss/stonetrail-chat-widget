@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+load_dotenv()
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -25,6 +26,8 @@ app.add_middleware(
 
 from app.database import Base, engine
 from app.routes.admin import router as admin_router
+from app.routes.staff import router as staff_router
+app.include_router(staff_router)
 app.include_router(admin_router)
 
 @app.get("/healthz")

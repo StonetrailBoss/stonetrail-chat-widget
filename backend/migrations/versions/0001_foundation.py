@@ -11,9 +11,9 @@ branch_labels = None
 depends_on = None
 
 def upgrade():
-    for table in Base.metadata.sorted_tables:
+    for table in [Base.metadata.tables[n] for n in ("tenants", "properties", "guests", "reservations")]:
         table.create(op.get_bind(), checkfirst=True)
 
 def downgrade():
-    for table in reversed(Base.metadata.sorted_tables):
+    for table in reversed([Base.metadata.tables[n] for n in ("tenants", "properties", "guests", "reservations")]):
         table.drop(op.get_bind(), checkfirst=True)

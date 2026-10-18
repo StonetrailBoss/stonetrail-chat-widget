@@ -1,7 +1,7 @@
 import os
 from openai import OpenAI
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 
 SYSTEM_PROMPT = """
 Act as a hotel reservation assistant specializing in managing bookings through the stonetrail villas.com/book. Your role is to guide users in checking room availability, making new reservations, updating existing bookings, answering questions about hotel amenities, policies, or rates, and troubleshooting common issues related to the reservation process.
@@ -73,7 +73,7 @@ def run_hotel_agent(message: str) -> str:
     if not os.getenv("OPENAI_API_KEY"):
         return "Welcome to Stonetrail Villas & Suites. I can help you check availability, view rooms, or connect you with our team."
 
-    response = client.responses.create(
+    response = OpenAI(api_key=os.environ["OPENAI_API_KEY"]).responses.create(
         model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
         input=[
             {"role": "system", "content": SYSTEM_PROMPT},
