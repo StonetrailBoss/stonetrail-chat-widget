@@ -1,50 +1,24 @@
-import os
-from urllib.parse import quote
+import httpx
+from fastapi import HTTPException
+from app.config import settings
 
-
-DEFAULT_HANDOFF_MESSAGE = (
-    "Hello Stonetrail Villas, I would like to speak with someone about my stay."
-)
-
-
-def get_public_whatsapp_number() -> str:
-    """
-    Public WhatsApp number used for wa.me handoff links.
-    Format must be international format with digits only, no +, spaces, or dashes.
-    Example for St. Vincent: 1784XXXXXXX
-    """
-    return os.getenv("WHATSAPP_PUBLIC_NUMBER", "").strip()
-
-
-def build_whatsapp_handoff_url(message: str = DEFAULT_HANDOFF_MESSAGE) -> str | None:
-    number = get_public_whatsapp_number()
-    if not number:
-        return None
-    return f"https://wa.me/{number}?text={quote(message)}"
-
-
-def build_whatsapp_handoff_response(session_id: str | None = None) -> dict:
-    url = build_whatsapp_handoff_url()
-
-    reply = (
-        "Of course. You can continue this conversation with our team on WhatsApp."
-        if url
-        else "Of course. A member of our team can assist you directly. Please contact Stonetrail Villas by WhatsApp or phone."
-    )
-
-    return {
-        "type": "handoff",
-        "reply": reply,
-        "handoff": {
-            "channel": "whatsapp",
-            "label": "Continue on WhatsApp",
-            "url": url,
-        },
-        "actions": [
-            {"label": "Continue on WhatsApp", "type": "link", "url": url},
-            {"label": "Check availability"},
-            {"label": "View room options"},
-        ],
-    }
-
-
+async def notify_staff(session_id: str, summary: str):
+    numbers = [x.strip() for x in settings.whatsapp_staff_numbers.split(",") if x.strip()]
+    if not (settings.whatsapp_access_token and settings.whatsapp_phone_number_id and numbers):
+        raise HTTPException(503, "WhatsApp escalation is not configured")
+    url = f"https://graph.facebook.com/v22.0/{settings.whatsapp_phone_number_id}/messages"
+    headers = {"Authorization": f"Bearer {settings.whatsapp_access_token}"}
+    delivered = 0
+    async with httpx.AsyncClient(timeout=15) as client:
+        for number in numbers:
+            # WhatsApp free-form messages require an open service window; outside it use an approved template.
+            payload = {"messaging_product":"whatsapp", "to":number, "type":"text", "text":{"body":f"Guest requests staff assistance. Session: {session_id}. Summary: {summary[:500]}"}}
+            try:
+                r = await client.post(url, json=payload, headers=headers)
+                r.raise_for_status()
+                delivered += 1
+            except httpx.HTTPError:
+                pass
+    if delivered == 0:
+        raise HTTPException(502, "Staff notification could not be sent")
+    return delivered

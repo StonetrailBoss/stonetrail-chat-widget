@@ -1,45 +1,24 @@
-import os
-from dotenv import load_dotenv
-load_dotenv()
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from app.config import settings
+from app.db import Base, engine
+from app.routes import chat, availability, booking
+from app import models  # register SQLAlchemy models
 
-from app.routes.chat import router as chat_router
-from app.routes.availability import router as availability_router
-from app.routes.booking import router as booking_router
-from app.routes.whatsapp import router as whatsapp_router
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Scaffold only: production schema changes should use Alembic migrations.
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    yield
+    await engine.dispose()
 
-load_dotenv()
+app = FastAPI(title="Stonetrail Guest Experience API", version="0.1.0", lifespan=lifespan)
+app.add_middleware(CORSMiddleware, allow_origins=[s.strip() for s in settings.cors_origins.split(",") if s.strip()], allow_credentials=False, allow_methods=["GET", "POST", "OPTIONS"], allow_headers=["Content-Type", "Authorization"])
+app.include_router(chat.router)
+app.include_router(availability.router)
+app.include_router(booking.router)
 
-app = FastAPI(title="Stonetrail Chat Backend")
-
-allowed_origins = [origin.strip() for origin in os.getenv(
-    "ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000,https://stonetrailvillas.com,https://www.stonetrailvillas.com"
-).split(",") if origin.strip()]
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=allowed_origins,
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allow_headers=["*"],
-)
-
-from app.database import Base, engine
-from app.routes.admin import router as admin_router
-from app.routes.staff import router as staff_router
-app.include_router(staff_router)
-app.include_router(admin_router)
-
-@app.get("/healthz")
-def readiness():
-    return {"status": "ok"}
-
-app.include_router(chat_router)
-app.include_router(availability_router)
-app.include_router(booking_router)
-app.include_router(whatsapp_router)
-
-
-@app.get("/")
-def health_check():
-    return {"status": "online", "service": "stonetrail-chat-backend"}
+@app.get("/health")
+async def health(): return {"status":"ok"}

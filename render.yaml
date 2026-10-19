@@ -1,23 +1,22 @@
-# Render Blueprint: set secrets in Render dashboard; never commit production tokens.
+databases:
+  - name: stonetrail-postgres
+    databaseName: stonetrail
+    user: stonetrail
 services:
   - type: web
-    name: stonetrail-api
+    name: stonetrail-guest-api
     runtime: python
-    plan: 0.5c-512mb
     rootDir: backend
     buildCommand: pip install -r requirements.txt
-    preDeployCommand: alembic upgrade head
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    healthCheckPath: /healthz
+    healthCheckPath: /health
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
       - key: DATABASE_URL
         fromDatabase:
-          name: stonetrail-db
+          name: stonetrail-postgres
           property: connectionString
-      - key: ALLOWED_ORIGINS
-        sync: false
-      - key: ADMIN_BOOTSTRAP_TOKEN
-        sync: false
       - key: OPENAI_API_KEY
         sync: false
       - key: CLOUDBEDS_API_KEY
@@ -28,87 +27,7 @@ services:
         sync: false
       - key: WHATSAPP_PHONE_NUMBER_ID
         sync: false
-      - key: WHATSAPP_VERIFY_TOKEN
+      - key: WHATSAPP_STAFF_NUMBERS
         sync: false
-      - key: META_APP_SECRET
-        sync: false
-      - key: WHATSAPP_API_VERSION
-        sync: false
-      - key: WHATSAPP_SEND_ENABLED
-        value: "true"
-      - key: WHATSAPP_AI_ENABLED
-        value: "true"
-      - key: WEBSITE_PROPERTY_ID
-        sync: false
-      - key: WEBSITE_ALLOWED_ORIGINS
+      - key: CORS_ORIGINS
         value: https://stonetrailvillas.com,https://www.stonetrailvillas.com
-      - key: WEBSITE_AI_ENABLED
-        value: "false"
-      - key: WEBSITE_RATE_LIMIT_SECRET
-        generateValue: true
-  - type: worker
-    name: stonetrail-messaging-worker
-    runtime: python
-    plan: 0.5c-512mb
-    rootDir: backend
-    buildCommand: pip install -r requirements.txt
-    startCommand: python -m app.messaging_worker
-    envVars:
-      - key: DATABASE_URL
-        fromDatabase:
-          name: stonetrail-db
-          property: connectionString
-      - key: WHATSAPP_ACCESS_TOKEN
-        fromService:
-          name: stonetrail-api
-          type: web
-          envVarKey: WHATSAPP_ACCESS_TOKEN
-      - key: WHATSAPP_PHONE_NUMBER_ID
-        fromService:
-          name: stonetrail-api
-          type: web
-          envVarKey: WHATSAPP_PHONE_NUMBER_ID
-      - key: META_APP_SECRET
-        fromService:
-          name: stonetrail-api
-          type: web
-          envVarKey: META_APP_SECRET
-      - key: WHATSAPP_API_VERSION
-        fromService:
-          name: stonetrail-api
-          type: web
-          envVarKey: WHATSAPP_API_VERSION
-      - key: WHATSAPP_SEND_ENABLED
-        fromService:
-          name: stonetrail-api
-          type: web
-          envVarKey: WHATSAPP_SEND_ENABLED
-      - key: WHATSAPP_AI_ENABLED
-        fromService:
-          name: stonetrail-api
-          type: web
-          envVarKey: WHATSAPP_AI_ENABLED
-      - key: OPENAI_API_KEY
-        fromService:
-          name: stonetrail-api
-          type: web
-          envVarKey: OPENAI_API_KEY
-  - type: web
-    name: stonetrail-frontend
-    runtime: static
-    rootDir: frontend
-    buildCommand: npm ci && npm run build
-    staticPublishPath: ./dist
-    envVars:
-      - key: VITE_API_BASE_URL
-        sync: false
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
-
-databases:
-  - name: stonetrail-db
-    plan: 0.1c-256mb
-    databaseName: stonetrail
-    user: stonetrail
