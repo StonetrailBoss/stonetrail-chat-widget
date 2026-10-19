@@ -14,7 +14,7 @@ load_dotenv()
 app = FastAPI(title="Stonetrail Chat Backend")
 
 allowed_origins = [origin.strip() for origin in os.getenv(
-    "ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000"
+    "ALLOWED_ORIGINS", "http://localhost:5173,http://localhost:3000,https://stonetrailvillas.com,https://www.stonetrailvillas.com"
 ).split(",") if origin.strip()]
 app.add_middleware(
     CORSMiddleware,

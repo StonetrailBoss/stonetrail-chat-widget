@@ -1,3 +1,5 @@
+> For website chat behavior and GoDaddy deployment, read PHASE4_README.md. It supersedes this guide’s statement that website chat remains separate from the inbox.
+
 # WhatsApp inbox bridge and delivery worker
 
 This increment extends the existing FastAPI + React/Vite application and Render Blueprint. Read this guide after PHASE2_README.md; it supersedes Phase 2's statements that all inbox replies are local and WhatsApp bypasses inbox ownership. The website chat remains a separate flow.

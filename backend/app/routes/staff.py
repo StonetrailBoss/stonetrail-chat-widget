@@ -8,6 +8,8 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.core import Property, Guest, Reservation
 from app.models.inbox import Staff, StaffSession, Conversation, Message, AuditEvent
+from app.models.website import WebsiteSession
+from app.services.messaging_service import aware
 from app.models.messaging import ChannelConnection, DeliveryJob, ReplyRequest
 from app.services.messaging_service import queue_reply, cancel_ai, key
 from app.whatsapp_client import configured
@@ -126,7 +128,7 @@ class NewMessage(BaseModel):
 def message(cid: str,data: NewMessage,user: Staff=Depends(current_staff),db: Session=Depends(get_db),idempotency_key: str | None=Header(default=None)):
     writable(user);c=scoped(db,user,cid)
     reqkey=None
-    if data.kind=="reply" and c.channel=="whatsapp":
+    if data.kind=="reply" and c.channel in ("whatsapp","website"):
         if not idempotency_key or not 16<=len(idempotency_key)<=128:raise HTTPException(422,"Idempotency-Key (16–128 characters) required for delivery")
         reqkey=key(user.property_id,user.id,idempotency_key)
         existing=db.get(ReplyRequest,reqkey)
@@ -142,8 +144,13 @@ def message(cid: str,data: NewMessage,user: Staff=Depends(current_staff),db: Ses
         c.human_owned=True;cancel_ai(db,cid)
         queue_reply(db,c,m)
         db.add(ReplyRequest(request_key=reqkey,message_id=m.id))
+    if data.kind=="reply" and c.channel=="website":
+        visitor=db.scalar(select(WebsiteSession).where(WebsiteSession.conversation_id==cid))
+        if not visitor or visitor.revoked or aware(visitor.expires_at)<=datetime.now(timezone.utc):raise HTTPException(409,"Website visitor session has expired")
+        c.human_owned=True;m.delivery_status="available";db.flush()
+        db.add(ReplyRequest(request_key=reqkey,message_id=m.id))
     audit(db,user,"message_"+data.kind,cid);db.commit()
-    return {"status":m.delivery_status,"message_id":m.id,"detail":"Queued for WhatsApp delivery" if m.delivery_status=="queued" else "Saved locally; no external message sent"}
+    return {"status":m.delivery_status,"message_id":m.id,"detail":"Queued for WhatsApp delivery" if m.delivery_status=="queued" else "Available to website visitor" if m.delivery_status=="available" else "Saved locally; no external message sent"}
 
 class WhatsAppConnection(BaseModel):
     phone_number_id: str=Field(pattern=r"^\d{5,100}$")
@@ -164,4 +171,4 @@ def channels(user: Staff=Depends(current_staff),db:Session=Depends(get_db)):
     state="not_connected"
     if connection:
         state="verified_send_receive" if connection.inbound_at and connection.delivered_at else "inbound_verified" if connection.inbound_at else "configured_unverified"
-    return [{"channel":"whatsapp","status":state,"sending_enabled":os.getenv("WHATSAPP_SEND_ENABLED","false").lower()=="true","configured":configured(),"last_inbound_at":connection.inbound_at if connection else None,"last_delivered_at":connection.delivered_at if connection else None}]+[{"channel":c,"status":"not_connected"} for c in ["instagram","email","booking.com","website"]]
+    return [{"channel":"whatsapp","status":state,"sending_enabled":os.getenv("WHATSAPP_SEND_ENABLED","false").lower()=="true","configured":configured(),"last_inbound_at":connection.inbound_at if connection else None,"last_delivered_at":connection.delivered_at if connection else None}]+[{"channel":"website","status":"configured" if os.getenv("WEBSITE_PROPERTY_ID")==user.property_id else "not_connected"}]+[{"channel":c,"status":"not_connected"} for c in ["instagram","email","booking.com"]]

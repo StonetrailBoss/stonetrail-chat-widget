@@ -6,8 +6,8 @@ import requests
 
 CLOUDBEDS_API_KEY = os.getenv("CLOUDBEDS_API_KEY")
 CLOUDBEDS_PROPERTY_ID = os.getenv("CLOUDBEDS_PROPERTY_ID")
-CLOUDBEDS_BASE_URL = os.getenv("CLOUDBEDS_BASE_URL")
-BOOKING_ENGINE_URL = os.getenv("BOOKING_ENGINE_URL")
+CLOUDBEDS_BASE_URL = os.getenv("CLOUDBEDS_BASE_URL", "https://api.cloudbeds.com/api/v1.1").rstrip("/")
+BOOKING_ENGINE_URL = os.getenv("BOOKING_ENGINE_URL", "https://us2.cloudbeds.com/reservation/XsjT4D")
 
 HEADERS = {
     "Authorization": f"Bearer {CLOUDBEDS_API_KEY}",

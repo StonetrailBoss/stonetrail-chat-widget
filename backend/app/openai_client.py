@@ -69,14 +69,15 @@ use google maps to provide directions to the hotel when asked, and include a lin
 """
 
 
-def run_hotel_agent(message: str) -> str:
+def run_hotel_agent(message: str, history: list[dict] | None = None) -> str:
     if not os.getenv("OPENAI_API_KEY"):
         return "Welcome to Stonetrail Villas & Suites. I can help you check availability, view rooms, or connect you with our team."
 
-    response = OpenAI(api_key=os.environ["OPENAI_API_KEY"]).responses.create(
+    response = OpenAI(api_key=os.environ["OPENAI_API_KEY"], timeout=40, max_retries=0).responses.create(
         model=os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
         input=[
             {"role": "system", "content": SYSTEM_PROMPT},
+            *(history or []),
             {"role": "user", "content": message},
         ],
     )

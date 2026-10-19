@@ -1,399 +1,153 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { MessageCircle, X, Send, CalendarDays, Users, BedDouble, Loader2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
+import "./Widget.css";
 
-/**
- * Stonetrail Villas Chat Booking Widget
- * ------------------------------------------------------------
- * Drop this component into your website or React app.
- * It expects a backend API with these endpoints:
- *   POST /api/chat/message
- *   POST /api/availability/search
- *   POST /api/booking/link
- *
- * Recommended backend: Python FastAPI on Render with Cloudbeds credentials
- * stored as environment variables. Never expose Cloudbeds API keys here.
- */
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
-
-const quickActions = [
-  "Check availability",
-  "View room options",
-  "Call the Hotel",
-  "Make a reservation",
-];
-
-function createSessionId() {
-  const existing = localStorage.getItem("stv_chat_session_id");
-  if (existing) return existing;
-  const id = crypto.randomUUID();
-  localStorage.setItem("stv_chat_session_id", id);
-  return id;
-}
-
-export default function StonetrailChatWidget() {
+export default function StonetrailChatWidget({ apiBaseUrl }) {
+  const base = (apiBaseUrl || import.meta.env.VITE_API_BASE_URL || "http://localhost:8000").replace(/\/$/, "");
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [humanOwned, setHumanOwned] = useState(false);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState([
-    {
-      role: "assistant",
-      type: "text",
-      content:
-        "Welcome to Stonetrail Villas & Suites. I can help you check availability, compare rooms, and book your stay directly.",
-    },
-  ]);
-  const [bookingForm, setBookingForm] = useState({
-    checkIn: "",
-    checkOut: "",
-    adults: 2,
-    children: 0,
-    rooms: 1,
-  });
-  const [availability, setAvailability] = useState([]);
-  const sessionId = useMemo(() => createSessionId(), []);
-  const bottomRef = useRef(null);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
+  const [expired, setExpired] = useState(false);
+  const [notice, setNotice] = useState("");
+  const [rooms, setRooms] = useState([]);
+  const [bookingUrl, setBookingUrl] = useState("");
+  const [searching, setSearching] = useState(false);
+  const [dates, setDates] = useState({ checkIn: "", checkOut: "", adults: 2, children: 0, rooms: 1 });
+  const token = useRef(null);
+  const creating = useRef(null);
+  const pending = useRef(null);
+  const generation = useRef(0);
+  const transcript = useRef(null);
+  const storageKey = "stonetrail_visitor_v2:" + base;
+
+  const ensureSession = useCallback(async () => {
+    if (token.current) return token.current;
+    if (creating.current) return creating.current;
+    creating.current = (async () => {
+      try {
+        const cached = JSON.parse(sessionStorage.getItem(storageKey) || "null");
+        if (cached?.sessionToken && Date.parse(cached.expiresAt) > Date.now()) {
+          token.current = cached.sessionToken;
+          return token.current;
+        }
+      } catch { /* Storage may be blocked by the browser; memory-only sessions still work. */ }
+      const response = await fetch(base + "/api/chat/session", { method: "POST", credentials: "omit" });
+      if (!response.ok) throw new Error("Chat is unavailable. Please contact the hotel directly.");
+      const data = await response.json();
+      token.current = data.sessionToken;
+      try { sessionStorage.setItem(storageKey, JSON.stringify(data)); } catch { /* memory only */ }
+      return token.current;
+    })();
+    try { return await creating.current; } finally { creating.current = null; }
+  }, [base, storageKey]);
+
+  const visitorFetch = useCallback(async (path, options = {}) => {
+    const capability = await ensureSession();
+    const response = await fetch(base + "/api/chat" + path, {
+      ...options, credentials: "omit",
+      headers: { "Content-Type": "application/json", Authorization: "Bearer " + capability, ...options.headers },
+    });
+    if (!response.ok) {
+      if (response.status === 401) setExpired(true);
+      const data = await response.json().catch(() => ({}));
+      throw new Error(data.detail || "Chat connection interrupted. Please try again.");
+    }
+    return response.status === 204 ? null : response.json();
+  }, [base, ensureSession]);
+
+  const refresh = useCallback(async (signal, current) => {
+    const data = await visitorFetch("/messages", { signal });
+    if (current !== generation.current) return;
+    setMessages(data.messages);
+    setHumanOwned(data.humanOwned);
+  }, [visitorFetch]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, availability, loading]);
+    if (!open || expired) return;
+    const controller = new AbortController();
+    let running = false;
+    const tick = async () => {
+      if (running || document.visibilityState === "hidden") return;
+      running = true;
+      try { await refresh(controller.signal, generation.current); }
+      catch (e) { if (e.name !== "AbortError" && !controller.signal.aborted) setError(e.message); }
+      finally { running = false; }
+    };
+    tick();
+    const interval = setInterval(tick, 3000);
+    return () => { clearInterval(interval); controller.abort(); };
+  }, [open, expired, refresh]);
 
-  async function sendMessage(text = input) {
-    const cleanText = text.trim();
-    if (!cleanText) return;
+  useEffect(() => {
+    if (transcript.current) transcript.current.scrollTop = transcript.current.scrollHeight;
+  }, [messages]);
 
-    setMessages((prev) => [...prev, { role: "user", type: "text", content: cleanText }]);
-    setInput("");
-    setLoading(true);
-
+  async function send(text = input) {
+    const clean = text.trim();
+    if (!clean || sending || expired) return;
+    const current = generation.current;
+    if (pending.current?.message !== clean) pending.current = { message: clean, requestId: crypto.randomUUID() };
+    setSending(true); setError("");
     try {
-      const response = await fetch(`${API_BASE_URL}/api/chat/message`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          sessionId,
-          message: cleanText,
-          pageUrl: window.location.href,
-        }),
-      });
-
-      if (!response.ok) throw new Error("Chat API request failed");
-      const data = await response.json();
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          type: data.type || "text",
-          content: data.reply || "I can help with that. Would you like to check availability?",
-          actions: data.actions || [],
-          handoff: data.handoff || null,
-        },
-      ]);
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          type: "text",
-          content:
-            "I’m having trouble connecting right now. Please call or WhatsApp Stonetrail Villas for immediate assistance.",
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
+      await visitorFetch("/message", { method: "POST", body: JSON.stringify(pending.current) });
+      if (current !== generation.current) return;
+      pending.current = null; setInput("");
+      await refresh(undefined, current);
+    } catch (e) { if (current === generation.current) setError(e.message); }
+    finally { if (current === generation.current) setSending(false); }
   }
 
-  async function searchAvailability() {
-    if (!bookingForm.checkIn || !bookingForm.checkOut) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          type: "text",
-          content: "Please select both check-in and check-out dates so I can search availability.",
-        },
-      ]);
-      return;
-    }
+  async function newChat() {
+    // Revoke the previous visitor capability before clearing it.
+    try { if (creating.current) await creating.current; if (token.current) await visitorFetch("/session", { method: "DELETE" }); }
+    catch (e) { if (!expired) { setError(e.message); return; } }
+    generation.current += 1; token.current = null; creating.current = null; pending.current = null;
+    try { sessionStorage.removeItem(storageKey); } catch { /* memory only */ }
+    setMessages([]); setExpired(false); setHumanOwned(false); setError(""); setInput(""); setSending(false);
+    try { await refresh(undefined, generation.current); } catch (e) { setError(e.message); }
+  }
 
-    setLoading(true);
-    setAvailability([]);
+  async function publicApi(path, payload) {
+    const response = await fetch(base + path, { method: "POST", credentials: "omit", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    if (!response.ok) throw new Error("This service is unavailable. Please contact the hotel.");
+    return response.json();
+  }
 
+  async function availability(e) {
+    e.preventDefault(); setSearching(true); setError(""); setBookingUrl(""); setRooms([]);
     try {
-      const response = await fetch(`${API_BASE_URL}/api/availability/search`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId, ...bookingForm }),
-      });
-
-      if (!response.ok) throw new Error("Availability API request failed");
-      const data = await response.json();
-      setAvailability(data.results || []);
-
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          type: "text",
-          content: data.results?.length
-            ? "Great news — I found available options for your stay."
-            : "I could not find availability for those dates. Would you like to try different dates?",
-        },
-      ]);
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          type: "text",
-          content: "I could not check availability right now. Please try again or contact us directly.",
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
+      if (dates.checkOut <= dates.checkIn) throw new Error("Check-out must be after check-in.");
+      const data = await publicApi("/api/availability/search", dates);
+      if (data.success === false) throw new Error(data.error || "Availability lookup unavailable.");
+      setRooms(data.results || []);
+      setNotice(data.bookingUrl ? "Continue to Cloudbeds to confirm live availability and rates." : "Please ask our team about availability.");
+    } catch (e) { setError(e.message); } finally { setSearching(false); }
   }
 
-  async function getBookingLink(roomTypeId) {
-    setLoading(true);
-
+  async function booking(roomTypeId) {
+    setSearching(true); setError("");
     try {
-      const response = await fetch(`${API_BASE_URL}/api/booking/link`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId, roomTypeId, ...bookingForm }),
-      });
-
-      if (!response.ok) throw new Error("Booking link API request failed");
-      const data = await response.json();
-      window.open(data.bookingUrl, "_blank", "noopener,noreferrer");
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          type: "text",
-          content: "I could not generate the booking link. Please use our Book Now button or contact us directly.",
-        },
-      ]);
-    } finally {
-      setLoading(false);
-    }
+      const data = await publicApi("/api/booking/link", { ...dates, roomTypeId: roomTypeId === "booking-engine" ? undefined : roomTypeId });
+      const url = new URL(data.bookingUrl);
+      if (url.protocol !== "https:") throw new Error("Booking link unavailable.");
+      setBookingUrl(url.href);
+    } catch (e) { setError(e.message); } finally { setSearching(false); }
   }
 
-  return (
-    <div className="fixed bottom-5 right-5 z-50 font-sans">
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.96 }}
-            className="mb-4 w-[360px] max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/10"
-          >
-            <div className="flex items-center justify-between bg-[#102820] px-4 py-3 text-white">
-              <div>
-                <div className="text-sm font-semibold">Stonetrail Villas</div>
-                <div className="text-xs text-white/75">Booking Assistant</div>
-              </div>
-              <button onClick={() => setOpen(false)} className="rounded-full p-1 hover:bg-white/10">
-                <X size={18} />
-              </button>
-            </div>
-
-            <div className="h-[460px] overflow-y-auto bg-[#f7f4ee] px-4 py-4">
-              <div className="space-y-3">
-                {messages.map((message, index) => (
-                  <div
-                    key={index}
-                    className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
-                  >
-                    <div
-                      className={`max-w-[82%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${
-                        message.role === "user"
-                          ? "bg-[#102820] text-white"
-                          : "bg-white text-neutral-800 shadow-sm"
-                      }`}
-                    >
-                      {message.content}
-                      {message.actions?.length > 0 && (
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {message.actions.map((action, i) => {
-                            const label = action.label || action;
-                            const url = action.url || (label === "Continue on WhatsApp" ? message.handoff?.url : null);
-
-                            return (
-                              <button
-                                key={i}
-                                onClick={() => {
-                                  if (url) {
-                                    window.open(url, "_blank", "noopener,noreferrer");
-                                    return;
-                                  }
-                                  sendMessage(label);
-                                }}
-                                className="rounded-full border border-neutral-200 px-3 py-1 text-xs hover:bg-neutral-50"
-                              >
-                                {label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-
-                <AvailabilityForm
-                  bookingForm={bookingForm}
-                  setBookingForm={setBookingForm}
-                  searchAvailability={searchAvailability}
-                  loading={loading}
-                />
-
-                {availability.map((room) => (
-                  <RoomCard key={room.roomTypeId} room={room} onBook={getBookingLink} />
-                ))}
-
-                {loading && (
-                  <div className="flex justify-start">
-                    <div className="flex items-center gap-2 rounded-2xl bg-white px-3 py-2 text-sm text-neutral-600 shadow-sm">
-                      <Loader2 size={16} className="animate-spin" /> Checking...
-                    </div>
-                  </div>
-                )}
-                <div ref={bottomRef} />
-              </div>
-            </div>
-
-            <div className="border-t bg-white p-3">
-              <div className="mb-2 flex flex-wrap gap-2">
-                {quickActions.map((action) => (
-                  <button
-                    key={action}
-                    onClick={() => sendMessage(action)}
-                    className="rounded-full bg-neutral-100 px-3 py-1 text-xs text-neutral-700 hover:bg-neutral-200"
-                  >
-                    {action}
-                  </button>
-                ))}
-              </div>
-              <div className="flex items-center gap-2 rounded-full border bg-white px-3 py-2">
-                <input
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-                  placeholder="Ask about rooms or availability..."
-                  className="min-w-0 flex-1 bg-transparent text-sm outline-none"
-                />
-                <button onClick={() => sendMessage()} className="rounded-full bg-[#102820] p-2 text-white">
-                  <Send size={16} />
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <button
-        onClick={() => setOpen((value) => !value)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#102820] text-white shadow-xl hover:bg-[#173b30]"
-        aria-label="Open Stonetrail Villas chat"
-      >
-        <MessageCircle size={24} />
-      </button>
-    </div>
-  );
-}
-
-function AvailabilityForm({ bookingForm, setBookingForm, searchAvailability, loading }) {
-  function updateField(field, value) {
-    setBookingForm((prev) => ({ ...prev, [field]: value }));
-  }
-
-  return (
-    <div className="rounded-2xl bg-white p-3 shadow-sm">
-      <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-neutral-800">
-        <CalendarDays size={16} /> Check Availability
+  return <div className="stv-widget">
+    {open && <section className="stv-panel" aria-label="Stonetrail guest chat">
+      <header className="stv-header"><div><small>STONETRAIL VILLAS & SUITES</small><h2>How can we help?</h2><p>{humanOwned ? "Our team has your conversation" : "Guest assistance"}</p></div><button type="button" onClick={() => setOpen(false)} aria-label="Close chat">×</button></header>
+      <div className="stv-transcript" ref={transcript} role="log" aria-live="polite" aria-relevant="additions">
+        <p className="stv-welcome">Welcome to Stonetrail Villas & Suites. Ask about your stay, check availability, or request our team.</p>
+        {messages.map(m => <article className={m.kind === "guest" ? "stv-guest" : "stv-answer"} key={m.id}><small>{m.kind === "guest" ? "You" : m.kind === "reply" ? "Stonetrail team" : "Stonetrail"}</small><p>{m.body}</p></article>)}
       </div>
-      <div className="grid grid-cols-2 gap-2">
-        <label className="text-xs text-neutral-600">
-          Check-in
-          <input
-            type="date"
-            value={bookingForm.checkIn}
-            onChange={(e) => updateField("checkIn", e.target.value)}
-            className="mt-1 w-full rounded-lg border px-2 py-2 text-sm"
-          />
-        </label>
-        <label className="text-xs text-neutral-600">
-          Check-out
-          <input
-            type="date"
-            value={bookingForm.checkOut}
-            onChange={(e) => updateField("checkOut", e.target.value)}
-            className="mt-1 w-full rounded-lg border px-2 py-2 text-sm"
-          />
-        </label>
-        <label className="text-xs text-neutral-600">
-          Adults
-          <input
-            type="number"
-            min="1"
-            value={bookingForm.adults}
-            onChange={(e) => updateField("adults", Number(e.target.value))}
-            className="mt-1 w-full rounded-lg border px-2 py-2 text-sm"
-          />
-        </label>
-        <label className="text-xs text-neutral-600">
-          Children
-          <input
-            type="number"
-            min="0"
-            value={bookingForm.children}
-            onChange={(e) => updateField("children", Number(e.target.value))}
-            className="mt-1 w-full rounded-lg border px-2 py-2 text-sm"
-          />
-        </label>
-      </div>
-      <button
-        onClick={searchAvailability}
-        disabled={loading}
-        className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-[#102820] px-4 py-2 text-sm font-semibold text-white hover:bg-[#173b30] disabled:opacity-60"
-      >
-        <Users size={16} /> Search Rooms
-      </button>
-    </div>
-  );
-}
-
-function RoomCard({ room, onBook }) {
-  return (
-    <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
-      {room.imageUrl && <img src={room.imageUrl} alt={room.name} className="h-32 w-full object-cover" />}
-      <div className="p-3">
-        <div className="flex items-start gap-2">
-          <BedDouble size={18} className="mt-0.5 text-[#102820]" />
-          <div>
-            <h4 className="text-sm font-semibold text-neutral-900">{room.name}</h4>
-            <p className="mt-1 text-xs leading-relaxed text-neutral-600">{room.description}</p>
-          </div>
-        </div>
-        <div className="mt-3 flex items-center justify-between">
-          <div className="text-sm font-semibold text-neutral-900">
-            {room.currency || "USD"} {room.rate || "—"}
-          </div>
-          <button
-            onClick={() => onBook(room.roomTypeId)}
-            className="rounded-full bg-[#102820] px-4 py-2 text-xs font-semibold text-white hover:bg-[#173b30]"
-          >
-            Book Now
-          </button>
-        </div>
-      </div>
-    </div>
-  );
+      <div className="stv-tools"><button onClick={() => send("I would like to speak to a person")} disabled={sending || expired}>Talk to our team</button><button onClick={newChat} disabled={sending}>New chat</button></div>
+      <details className="stv-booking"><summary>Check room availability</summary><form onSubmit={availability}><div className="stv-grid">{["checkIn", "checkOut"].map((name, i) => <label key={name}>{i ? "Check-out" : "Check-in"}<input type="date" value={dates[name]} onChange={e => setDates({ ...dates, [name]: e.target.value })} required /></label>)}{["adults", "children", "rooms"].map(name => <label key={name}>{name}<input type="number" value={dates[name]} min={name === "children" ? 0 : 1} max="20" onChange={e => setDates({ ...dates, [name]: Number(e.target.value) })} required /></label>)}</div><button disabled={searching}>Search rooms</button></form><p role="status">{notice}</p>{rooms.map((room, i) => <article key={room.roomTypeId || i}><strong>{room.name}</strong><p>{room.description}</p>{room.rate != null && <p>{room.currency || "USD"} {room.rate}</p>}<button disabled={searching} onClick={() => booking(room.roomTypeId)}>Get booking link</button></article>)}{bookingUrl && <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Continue to secure booking</a>}</details>
+      {error && <p className="stv-error" role="alert">{error}{expired && " Select New chat to reconnect."}</p>}
+      <form className="stv-compose" onSubmit={e => { e.preventDefault(); send(); }}><label htmlFor="stv-message">Your message</label><div><input id="stv-message" value={input} onChange={e => setInput(e.target.value)} maxLength={4000} disabled={expired} autoComplete="off" placeholder="Ask us about your stay…" /><button disabled={sending || expired || !input.trim()}>{sending ? "Sending…" : "Send"}</button></div></form>
+    </section>}
+    <button className="stv-launcher" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Close chat" : "Chat with Stonetrail"}</button>
+  </div>;
 }

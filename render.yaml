@@ -35,9 +35,17 @@ services:
       - key: WHATSAPP_API_VERSION
         sync: false
       - key: WHATSAPP_SEND_ENABLED
-        value: "false"
+        value: "true"
       - key: WHATSAPP_AI_ENABLED
+        value: "true"
+      - key: WEBSITE_PROPERTY_ID
+        sync: false
+      - key: WEBSITE_ALLOWED_ORIGINS
+        value: https://stonetrailvillas.com,https://www.stonetrailvillas.com
+      - key: WEBSITE_AI_ENABLED
         value: "false"
+      - key: WEBSITE_RATE_LIMIT_SECRET
+        generateValue: true
   - type: worker
     name: stonetrail-messaging-worker
     runtime: python
