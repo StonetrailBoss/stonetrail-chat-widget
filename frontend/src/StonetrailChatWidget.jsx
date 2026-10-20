@@ -11,6 +11,7 @@ export default function StonetrailChatWidget({ apiBaseUrl }) {
   const [error, setError] = useState("");
   const [expired, setExpired] = useState(false);
   const [notice, setNotice] = useState("");
+  const [actions, setActions] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [bookingUrl, setBookingUrl] = useState("");
   const [searching, setSearching] = useState(false);
@@ -20,7 +21,7 @@ export default function StonetrailChatWidget({ apiBaseUrl }) {
   const pending = useRef(null);
   const generation = useRef(0);
   const transcript = useRef(null);
-  const storageKey = "stonetrail_visitor_v2:" + base;
+  const storageKey = "stonetrail_visitor_v3:" + base;
 
   const ensureSession = useCallback(async () => {
     if (token.current) return token.current;
@@ -62,6 +63,7 @@ export default function StonetrailChatWidget({ apiBaseUrl }) {
     if (current !== generation.current) return;
     setMessages(data.messages);
     setHumanOwned(data.humanOwned);
+    setActions(data.actions || []);
   }, [visitorFetch]);
 
   useEffect(() => {
@@ -91,7 +93,8 @@ export default function StonetrailChatWidget({ apiBaseUrl }) {
     if (pending.current?.message !== clean) pending.current = { message: clean, requestId: crypto.randomUUID() };
     setSending(true); setError("");
     try {
-      await visitorFetch("/message", { method: "POST", body: JSON.stringify(pending.current) });
+      const result = await visitorFetch("/message", { method: "POST", body: JSON.stringify(pending.current) });
+      if (result.notification === "failed") setNotice("Your conversation is in the staff inbox. WhatsApp notification failed; you can contact the hotel directly below.");
       if (current !== generation.current) return;
       pending.current = null; setInput("");
       await refresh(undefined, current);
@@ -105,7 +108,7 @@ export default function StonetrailChatWidget({ apiBaseUrl }) {
     catch (e) { if (!expired) { setError(e.message); return; } }
     generation.current += 1; token.current = null; creating.current = null; pending.current = null;
     try { sessionStorage.removeItem(storageKey); } catch { /* memory only */ }
-    setMessages([]); setExpired(false); setHumanOwned(false); setError(""); setInput(""); setSending(false);
+    setMessages([]); setActions([]); setNotice(""); setExpired(false); setHumanOwned(false); setError(""); setInput(""); setSending(false);
     try { await refresh(undefined, generation.current); } catch (e) { setError(e.message); }
   }
 
@@ -119,18 +122,21 @@ export default function StonetrailChatWidget({ apiBaseUrl }) {
     e.preventDefault(); setSearching(true); setError(""); setBookingUrl(""); setRooms([]);
     try {
       if (dates.checkOut <= dates.checkIn) throw new Error("Check-out must be after check-in.");
-      const data = await publicApi("/api/availability/search", dates);
+      const data = await publicApi("/api/availability/search", { check_in: dates.checkIn, check_out: dates.checkOut, adults: dates.adults });
       if (data.success === false) throw new Error(data.error || "Availability lookup unavailable.");
       setRooms(data.results || []);
-      setNotice(data.bookingUrl ? "Continue to Cloudbeds to confirm live availability and rates." : "Please ask our team about availability.");
+      if (data.booking_url) setBookingUrl(data.booking_url);
+      setNotice((data.bookingUrl || data.booking_url) ? "Continue to Cloudbeds to confirm live availability and rates." : "Please ask our team about availability.");
     } catch (e) { setError(e.message); } finally { setSearching(false); }
   }
 
-  async function booking(roomTypeId) {
+  async function booking() {
     setSearching(true); setError("");
     try {
-      const data = await publicApi("/api/booking/link", { ...dates, roomTypeId: roomTypeId === "booking-engine" ? undefined : roomTypeId });
-      const url = new URL(data.bookingUrl);
+      const response = await fetch(base + "/api/booking/link");
+      if (!response.ok) throw new Error("Booking link unavailable.");
+      const data = await response.json();
+      const url = new URL(data.booking_url);
       if (url.protocol !== "https:") throw new Error("Booking link unavailable.");
       setBookingUrl(url.href);
     } catch (e) { setError(e.message); } finally { setSearching(false); }
@@ -144,6 +150,8 @@ export default function StonetrailChatWidget({ apiBaseUrl }) {
         {messages.map(m => <article className={m.kind === "guest" ? "stv-guest" : "stv-answer"} key={m.id}><small>{m.kind === "guest" ? "You" : m.kind === "reply" ? "Stonetrail team" : "Stonetrail"}</small><p>{m.body}</p></article>)}
       </div>
       <div className="stv-tools"><button onClick={() => send("I would like to speak to a person")} disabled={sending || expired}>Talk to our team</button><button onClick={newChat} disabled={sending}>New chat</button></div>
+      {humanOwned && <div className="stv-tools"><p>Staff assistance requested. Replies will appear here when a team member responds.</p>{actions.filter(a => a.url).map(a => <a key={a.type} href={a.url} target="_blank" rel="noopener noreferrer">{a.label}</a>)}</div>}
+      {notice && <p role="status">{notice}</p>}
       <details className="stv-booking"><summary>Check room availability</summary><form onSubmit={availability}><div className="stv-grid">{["checkIn", "checkOut"].map((name, i) => <label key={name}>{i ? "Check-out" : "Check-in"}<input type="date" value={dates[name]} onChange={e => setDates({ ...dates, [name]: e.target.value })} required /></label>)}{["adults", "children", "rooms"].map(name => <label key={name}>{name}<input type="number" value={dates[name]} min={name === "children" ? 0 : 1} max="20" onChange={e => setDates({ ...dates, [name]: Number(e.target.value) })} required /></label>)}</div><button disabled={searching}>Search rooms</button></form><p role="status">{notice}</p>{rooms.map((room, i) => <article key={room.roomTypeId || i}><strong>{room.name}</strong><p>{room.description}</p>{room.rate != null && <p>{room.currency || "USD"} {room.rate}</p>}<button disabled={searching} onClick={() => booking(room.roomTypeId)}>Get booking link</button></article>)}{bookingUrl && <a href={bookingUrl} target="_blank" rel="noopener noreferrer">Continue to secure booking</a>}</details>
       {error && <p className="stv-error" role="alert">{error}{expired && " Select New chat to reconnect."}</p>}
       <form className="stv-compose" onSubmit={e => { e.preventDefault(); send(); }}><label htmlFor="stv-message">Your message</label><div><input id="stv-message" value={input} onChange={e => setInput(e.target.value)} maxLength={4000} disabled={expired} autoComplete="off" placeholder="Ask us about your stay…" /><button disabled={sending || expired || !input.trim()}>{sending ? "Sending…" : "Send"}</button></div></form>

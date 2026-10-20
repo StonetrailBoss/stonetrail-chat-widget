@@ -20,3 +20,15 @@ class Message(Base):
     role: Mapped[str] = mapped_column(String(20))
     content: Mapped[str] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+class VisitorSession(Base):
+    __tablename__ = "visitor_sessions"
+    token_hash: Mapped[str] = mapped_column(String(64), primary_key=True)
+    conversation_id: Mapped[str] = mapped_column(String(36), ForeignKey("conversations.id"), index=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+class ChatRequest(Base):
+    __tablename__ = "chat_requests"
+    id: Mapped[str] = mapped_column(String(100), primary_key=True)
+    message: Mapped[str] = mapped_column(Text)
+    result: Mapped[str] = mapped_column(Text)

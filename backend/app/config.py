@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     whatsapp_staff_numbers: str = ""
     whatsapp_verify_token: str = ""
     whatsapp_app_secret: str = ""
+    whatsapp_guest_number: str = ""
+    hotel_phone: str = ""
     admin_api_key: str = ""
     max_history_messages: int = 20
 

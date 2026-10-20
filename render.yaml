@@ -31,3 +31,9 @@ services:
         sync: false
       - key: CORS_ORIGINS
         value: https://stonetrailvillas.com,https://www.stonetrailvillas.com
+      - key: ADMIN_API_KEY
+        generateValue: true
+      - key: WHATSAPP_GUEST_NUMBER
+        sync: false
+      - key: HOTEL_PHONE
+        sync: false
