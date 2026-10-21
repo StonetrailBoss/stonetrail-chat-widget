@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "Accommodations — Garden Retreat",
+    "heading": "Garden Junior Suite",
+    "tagline": "Intimate, private, and perfectly appointed"
+  },
+  "overview": {
+    "eyebrow": "Overview",
+    "body1": "The Garden Junior Suite is an intimate 1-bedroom retreat with a four-poster king bed, a kitchenette, and a private patio that opens directly to the tropical garden. Ideal for couples or solo travellers seeking a quiet, private escape.",
+    "body2": "Thoughtfully designed with every comfort in mind, the Garden Junior Suite offers the charm of a boutique villa with the convenience of a self-contained space — perfect for longer stays."
+  },
+  "gallery": {
+    "eyebrow": "Photo Gallery",
+    "heading": "Inside the Suite"
+  },
+  "amenities": {
+    "eyebrow": "Included",
+    "heading": "Suite Amenities"
+  },
+  "cta": {
+    "eyebrow": "Reserve Your Stay",
+    "heading": "Book the Garden Junior Suite",
+    "primaryLabel": "Book Now",
+    "secondaryLabel": "Enquire"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "Accommodations — 02",
+    "heading": "Honeymoon Suite",
+    "tagline": "Romance, privacy, and a soaking tub for two"
+  },
+  "overview": {
+    "eyebrow": "Overview",
+    "body1": "The Honeymoon Suite is an intimate sanctuary designed for romance — a four-poster king bed, a freestanding soaking tub, and a private patio that opens to the tropical garden. Every detail has been considered for couples seeking a truly private retreat.",
+    "body2": "From the soft lighting to the curated amenities, the Honeymoon Suite offers an experience that is both luxurious and deeply personal — the perfect setting for a honeymoon, anniversary, or simply a romantic escape."
+  },
+  "gallery": {
+    "eyebrow": "Photo Gallery",
+    "heading": "Inside the Suite"
+  },
+  "amenities": {
+    "eyebrow": "Included",
+    "heading": "Suite Amenities"
+  },
+  "cta": {
+    "eyebrow": "Reserve Your Stay",
+    "heading": "Book the Honeymoon Suite",
+    "primaryLabel": "Book Now",
+    "secondaryLabel": "Enquire"
+  }
+}

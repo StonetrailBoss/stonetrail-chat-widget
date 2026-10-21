@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "Accommodations — 03",
+    "heading": "Garden Retreat",
+    "tagline": "Two villas, one lush tropical garden"
+  },
+  "overview": {
+    "eyebrow": "Overview",
+    "body1": "The Garden Retreat is a collection of two private villas set within a lush tropical garden — the Garden Family Villa and the Garden Junior Suite. Each offers a distinct experience, united by the same serene garden setting and Caribbean character.",
+    "body2": "Whether you choose the spacious Family Villa or the intimate Junior Suite, the Garden Retreat offers privacy, comfort, and a connection to the natural beauty of St. Vincent and the Grenadines."
+  },
+  "gallery": {
+    "eyebrow": "Photo Gallery",
+    "heading": "Inside the Retreat"
+  },
+  "amenities": {
+    "eyebrow": "Included",
+    "heading": "Villa Amenities"
+  },
+  "cta": {
+    "eyebrow": "Reserve Your Stay",
+    "heading": "Book the Garden Retreat",
+    "primaryLabel": "Book Now",
+    "secondaryLabel": "Enquire"
+  }
+}

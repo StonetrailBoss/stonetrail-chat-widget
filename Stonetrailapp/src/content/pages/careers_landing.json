@@ -1,0 +1,37 @@
+{
+  "hero": {
+    "eyebrow": "Join Our Team",
+    "heading": "Careers",
+    "subheading": "Build a meaningful career in Caribbean hospitality at one of St. Vincent and the Grenadines' most distinctive boutique properties."
+  },
+  "intro": {
+    "heading": "More than a job. A place to belong.",
+    "body": "Stonetrail Villas is a family-owned boutique property built on integrity, care, and a genuine love for this island. We are looking for people who share those values — and who want to grow with us."
+  },
+  "links": [
+    {
+      "id": "l1",
+      "label": "Our Workplace",
+      "description": "Our culture, values, and what we offer our team.",
+      "href": "/company/careers/our-workplace"
+    },
+    {
+      "id": "l2",
+      "label": "Message from the CEO",
+      "description": "A personal note from our founder on what drives us.",
+      "href": "/company/careers/message-from-ceo"
+    },
+    {
+      "id": "l3",
+      "label": "Career Opportunities",
+      "description": "Browse open positions and apply today.",
+      "href": "/company/careers/opportunities"
+    }
+  ],
+  "cta": {
+    "heading": "Ready to apply?",
+    "body": "Send your CV and a short introduction to our team.",
+    "label": "Email us",
+    "email": "careers@stonetrailvillas.com"
+  }
+}

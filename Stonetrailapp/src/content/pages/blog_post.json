@@ -1,0 +1,9 @@
+{
+  "nav": {
+    "backLabel": "All posts",
+    "backFooterLabel": "Back to Travel Journal"
+  },
+  "related": {
+    "eyebrow": "More from the Journal"
+  }
+}

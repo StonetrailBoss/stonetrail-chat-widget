@@ -1,0 +1,693 @@
+{
+  "pages/home/hero": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/2228611883",
+    "searchQuery": "luxury Caribbean villa pool ocean view turquoise water",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/2267444976",
+      "https://img1.wsimg.com/isteam/getty/2243934918",
+      "https://img1.wsimg.com/isteam/getty/2216362435",
+      "https://img1.wsimg.com/isteam/getty/2206103541"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:50:55.061Z",
+    "lastUpdated": "2026-04-29T01:50:55.061Z",
+    "gettyId": "2228611883",
+    "alternativeGettyIds": [
+      "2267444976",
+      "2243934918",
+      "2216362435",
+      "2206103541"
+    ],
+    "requestedSize": {
+      "width": 1920,
+      "height": 1080,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "compositions": "wide_shot",
+    "moods": "warm,vivid",
+    "minimumSize": "x_large"
+  },
+  "pages/home/highlights": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/475940721",
+    "searchQuery": "boutique hotel beachfront Caribbean tropical architecture",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/2193440125",
+      "https://img1.wsimg.com/isteam/getty/2227953645",
+      "https://img1.wsimg.com/isteam/getty/2167412301"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:50:55.883Z",
+    "lastUpdated": "2026-04-29T01:50:55.883Z",
+    "gettyId": "475940721",
+    "alternativeGettyIds": [
+      "2193440125",
+      "2227953645",
+      "2167412301"
+    ],
+    "requestedSize": {
+      "width": 800,
+      "height": 1100,
+      "fit": "cover"
+    },
+    "orientations": "vertical",
+    "moods": "warm,natural"
+  },
+  "pages/home/room-1": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/507832553",
+    "searchQuery": "luxury villa bedroom tropical ocean view",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/1082344302",
+      "https://img1.wsimg.com/isteam/getty/2189408408",
+      "https://img1.wsimg.com/isteam/getty/1414971213"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:50:57.383Z",
+    "lastUpdated": "2026-04-29T01:50:57.383Z",
+    "gettyId": "507832553",
+    "alternativeGettyIds": [
+      "1082344302",
+      "2189408408",
+      "1414971213"
+    ],
+    "requestedSize": {
+      "width": 800,
+      "height": 600,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "warm"
+  },
+  "pages/home/room-2": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/1199434928",
+    "searchQuery": "luxury resort suite private pool terrace Caribbean",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/1283836283"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:50:58.764Z",
+    "lastUpdated": "2026-04-29T01:50:58.764Z",
+    "gettyId": "1199434928",
+    "alternativeGettyIds": [
+      "1283836283"
+    ],
+    "requestedSize": {
+      "width": 800,
+      "height": 600,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "warm,vivid"
+  },
+  "pages/home/room-3": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/1368866338",
+    "searchQuery": "boutique hotel garden villa tropical lush greenery",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/2261695650",
+      "https://img1.wsimg.com/isteam/getty/2163404262",
+      "https://img1.wsimg.com/isteam/getty/2269310829"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:51:00.329Z",
+    "lastUpdated": "2026-04-29T01:51:00.329Z",
+    "gettyId": "1368866338",
+    "alternativeGettyIds": [
+      "2261695650",
+      "2163404262",
+      "2269310829"
+    ],
+    "requestedSize": {
+      "width": 800,
+      "height": 600,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "natural,warm"
+  },
+  "pages/home/book-direct": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/155378516",
+    "searchQuery": "luxury resort infinity pool sunset Caribbean ocean",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/177530730",
+      "https://img1.wsimg.com/isteam/getty/183049659",
+      "https://img1.wsimg.com/isteam/getty/2180126121"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:51:01.331Z",
+    "lastUpdated": "2026-04-29T01:51:01.331Z",
+    "gettyId": "155378516",
+    "alternativeGettyIds": [
+      "177530730",
+      "183049659",
+      "2180126121"
+    ],
+    "requestedSize": {
+      "width": 900,
+      "height": 700,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "warm,dramatic"
+  },
+  "pages/home/location": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/1396513245",
+    "searchQuery": "St Vincent Grenadines aerial beach turquoise Caribbean island",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/2160481209",
+      "https://img1.wsimg.com/isteam/getty/1932018127",
+      "https://img1.wsimg.com/isteam/getty/1938684740",
+      "https://img1.wsimg.com/isteam/getty/1331151739"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:51:04.211Z",
+    "lastUpdated": "2026-04-29T01:51:04.211Z",
+    "gettyId": "1396513245",
+    "alternativeGettyIds": [
+      "2160481209",
+      "1932018127",
+      "1938684740",
+      "1331151739"
+    ],
+    "requestedSize": {
+      "width": 1920,
+      "height": 900,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "compositions": "wide_shot",
+    "moods": "vivid,warm",
+    "minimumSize": "large"
+  },
+  "logo/primary": {
+    "mediaType": "logo",
+    "currentUrl": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/transparent-3832d5cc52c929d190f4bb9e9f4d3a17/logo-stonetrail-villas-3832d5.png",
+    "searchQuery": "",
+    "alternatives": [
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/transparent-01fc1ed3b5c4c7993319520401480799/logo-edit-3832d5cc-01fc1e.png",
+      "/airo-assets/uploads/logo-primary-711fbf8e.png",
+      "/airo-assets/uploads/logo-primary-45e2efd6.png",
+      "https://img1.wsimg.com/isteam/getty/1213616887",
+      "https://img1.wsimg.com/isteam/getty/1439469724",
+      "https://img1.wsimg.com/isteam/getty/1406350134",
+      "https://img1.wsimg.com/isteam/getty/471868269",
+      "https://img1.wsimg.com/isteam/getty/1292900780"
+    ],
+    "solidUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/transparent-3832d5cc52c929d190f4bb9e9f4d3a17/logo-stonetrail-villas-3832d5.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/solid-f6b207ade3009740fe72a1ef940bbb2c/logo-stonetrail-villas-f6b207.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/transparent-01fc1ed3b5c4c7993319520401480799/logo-edit-3832d5cc-01fc1e.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/solid-8c5ca0aa2ea18f35bb6718bb11aff528/logo-edit-3832d5cc-8c5ca0.png"
+    },
+    "reversedUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/transparent-3832d5cc52c929d190f4bb9e9f4d3a17/logo-stonetrail-villas-3832d5.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/reversed-5c3e9b3a8e84e89bc997ac3de3097cb5/logo-stonetrail-villas-5c3e9b.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/transparent-01fc1ed3b5c4c7993319520401480799/logo-edit-3832d5cc-01fc1e.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/reversed-061a6571195b750f756e41b6b70b6f67/logo-edit-3832d5cc-061a65.png"
+    },
+    "reversedSolidUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/transparent-3832d5cc52c929d190f4bb9e9f4d3a17/logo-stonetrail-villas-3832d5.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/reversed-solid-768c9a3b475a819cd2e5e45e35964a7f/logo-stonetrail-villas-768c9a.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/transparent-01fc1ed3b5c4c7993319520401480799/logo-edit-3832d5cc-01fc1e.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/reversed-solid-eca4b10a164376a9accf6ceca26daba0/logo-edit-3832d5cc-eca4b1.png"
+    },
+    "mockupUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/transparent-3832d5cc52c929d190f4bb9e9f4d3a17/logo-stonetrail-villas-3832d5.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/mockup-e356c1d1e50659cddee0adbba5a4babc/logo-stonetrail-villas-e356c1.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/transparent-01fc1ed3b5c4c7993319520401480799/logo-edit-3832d5cc-01fc1e.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/mockup-739f31aede755709c215f4f6e868829e/logo-edit-3832d5cc-739f31.png"
+    },
+    "logoSourceMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/transparent-3832d5cc52c929d190f4bb9e9f4d3a17/logo-stonetrail-villas-3832d5.png": {
+        "sessionId": "15032793-eb95-40ab-a392-4057dacbd08f",
+        "logoId": "3832d5cc"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/transparent-01fc1ed3b5c4c7993319520401480799/logo-edit-3832d5cc-01fc1e.png": {
+        "sessionId": "cfe5823b-4c1d-4a17-bff7-df1a797d96d0",
+        "logoId": "01fc1ed3"
+      }
+    },
+    "userModified": true,
+    "createdAt": "2026-04-29T01:51:43.620Z",
+    "lastUpdated": "2026-05-14T21:49:22.075Z",
+    "uploadSources": {
+      "/airo-assets/uploads/logo-primary-711fbf8e.png": "s45biwitgt_1778793917858_file_Y8M9k3x_lT.png"
+    }
+  },
+  "logo/horizontal": {
+    "mediaType": "logo",
+    "currentUrl": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-transparent-8aa2ad4ce603e7fc3e6a2b3f0004468b/logo-edit-3832d5cc-8aa2ad.png",
+    "searchQuery": "STONETRAIL VILLAS",
+    "alternatives": [
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-transparent-6f51f0c57e2b30ebc57b113413c6e0cf/logo-stonetrail-villas-6f51f0.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-2701b821bd25de82d7a435a94ee55fc2/logo-stonetrail-villas-2701b8.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-a85b113b1ab6d12df040f18d55403465/logo-stonetrail-villas-a85b11.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-788179b8d00dbef651bcd0a99a7436ec/logo-stonetrail-villas-788179.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-2f45166e2028648d9d6740c203cd2b3d/logo-stonetrail-villas-2f4516.png"
+    ],
+    "solidUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-2701b821bd25de82d7a435a94ee55fc2/logo-stonetrail-villas-2701b8.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-solid-d8615dbf46b1c38564fa209287606bc6/logo-stonetrail-villas-d8615d.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-a85b113b1ab6d12df040f18d55403465/logo-stonetrail-villas-a85b11.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-solid-f58f36020093144489b8a4f83269ab52/logo-stonetrail-villas-f58f36.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-788179b8d00dbef651bcd0a99a7436ec/logo-stonetrail-villas-788179.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-solid-4dc9382751f981de5ceac09219252cdf/logo-stonetrail-villas-4dc938.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-2f45166e2028648d9d6740c203cd2b3d/logo-stonetrail-villas-2f4516.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-solid-a1ccdf01baa9ee6b4e4459222665582c/logo-stonetrail-villas-a1ccdf.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-transparent-6f51f0c57e2b30ebc57b113413c6e0cf/logo-stonetrail-villas-6f51f0.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-solid-f1193ee7d704aa23e78393ef9308266c/logo-stonetrail-villas-f1193e.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-transparent-8aa2ad4ce603e7fc3e6a2b3f0004468b/logo-edit-3832d5cc-8aa2ad.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-solid-fc3a0e4f078828e1cef4388ea7b622a0/logo-edit-3832d5cc-fc3a0e.png"
+    },
+    "reversedUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-transparent-6f51f0c57e2b30ebc57b113413c6e0cf/logo-stonetrail-villas-6f51f0.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-reversed-3863dd1817b42184ef362a310ac71396/logo-stonetrail-villas-3863dd.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-transparent-8aa2ad4ce603e7fc3e6a2b3f0004468b/logo-edit-3832d5cc-8aa2ad.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-reversed-5bd2246bd4c229603391aa92737f9832/logo-edit-3832d5cc-5bd224.png"
+    },
+    "reversedSolidUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-transparent-6f51f0c57e2b30ebc57b113413c6e0cf/logo-stonetrail-villas-6f51f0.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-reversed-solid-489af1cc07ada5f61c56cf8139960440/logo-stonetrail-villas-489af1.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-transparent-8aa2ad4ce603e7fc3e6a2b3f0004468b/logo-edit-3832d5cc-8aa2ad.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-reversed-solid-8abddd4781c685aae98d71e86f6dc4ce/logo-edit-3832d5cc-8abddd.png"
+    },
+    "mockupUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-transparent-6f51f0c57e2b30ebc57b113413c6e0cf/logo-stonetrail-villas-6f51f0.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-mockup-2c431e1b8535e5f8e9dbd0df3b51f9c1/logo-stonetrail-villas-2c431e.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-transparent-8aa2ad4ce603e7fc3e6a2b3f0004468b/logo-edit-3832d5cc-8aa2ad.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-mockup-ca68e00fe79cf2b3fd062c9123c4d75a/logo-edit-3832d5cc-ca68e0.png"
+    },
+    "logoSourceMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-2701b821bd25de82d7a435a94ee55fc2/logo-stonetrail-villas-2701b8.png": {
+        "sessionId": "f617727d-cc09-41b5-b729-d3124801a044",
+        "logoId": "ec6a21e4"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-a85b113b1ab6d12df040f18d55403465/logo-stonetrail-villas-a85b11.png": {
+        "sessionId": "f617727d-cc09-41b5-b729-d3124801a044",
+        "logoId": "8237fcff"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-788179b8d00dbef651bcd0a99a7436ec/logo-stonetrail-villas-788179.png": {
+        "sessionId": "f617727d-cc09-41b5-b729-d3124801a044",
+        "logoId": "d70ae7dd"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/horizontal-transparent-2f45166e2028648d9d6740c203cd2b3d/logo-stonetrail-villas-2f4516.png": {
+        "sessionId": "f617727d-cc09-41b5-b729-d3124801a044",
+        "logoId": "8c2885a7"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/horizontal-transparent-6f51f0c57e2b30ebc57b113413c6e0cf/logo-stonetrail-villas-6f51f0.png": {
+        "sessionId": "15032793-eb95-40ab-a392-4057dacbd08f",
+        "logoId": "3832d5cc"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/horizontal-transparent-8aa2ad4ce603e7fc3e6a2b3f0004468b/logo-edit-3832d5cc-8aa2ad.png": {
+        "sessionId": "cfe5823b-4c1d-4a17-bff7-df1a797d96d0",
+        "logoId": "01fc1ed3"
+      }
+    },
+    "userModified": true,
+    "createdAt": "2026-04-29T01:51:43.728Z",
+    "lastUpdated": "2026-05-14T21:49:23.058Z"
+  },
+  "logo/vertical": {
+    "mediaType": "logo",
+    "currentUrl": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-transparent-e8074b4379d9c05db68cae16f58d36d5/logo-edit-3832d5cc-e8074b.png",
+    "searchQuery": "STONETRAIL VILLAS",
+    "alternatives": [
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-transparent-9997aacef27fa8397864b3fdcad83cbe/logo-stonetrail-villas-9997aa.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-608610d056454f26fefb5fdc418002ba/logo-stonetrail-villas-608610.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-4f375c873e9433de28e0cfb2d6adcf80/logo-stonetrail-villas-4f375c.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-a45bbb2097dabaf454116864b1fba567/logo-stonetrail-villas-a45bbb.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-3447f8d7e37730999e5b243bc1476c51/logo-stonetrail-villas-3447f8.png"
+    ],
+    "solidUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-608610d056454f26fefb5fdc418002ba/logo-stonetrail-villas-608610.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-solid-b004ce136c5dfe1005971926bc0a1f93/logo-stonetrail-villas-b004ce.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-4f375c873e9433de28e0cfb2d6adcf80/logo-stonetrail-villas-4f375c.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-solid-0db483c820215251934afad163cb0087/logo-stonetrail-villas-0db483.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-a45bbb2097dabaf454116864b1fba567/logo-stonetrail-villas-a45bbb.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-solid-f7f883bd9494d1e3b2d7da8a857b9763/logo-stonetrail-villas-f7f883.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-3447f8d7e37730999e5b243bc1476c51/logo-stonetrail-villas-3447f8.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-solid-9ffa5cf1b2ffb60b5c2015e589432412/logo-stonetrail-villas-9ffa5c.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-transparent-9997aacef27fa8397864b3fdcad83cbe/logo-stonetrail-villas-9997aa.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-solid-9c2758317b31475f232ed8e44d5195f5/logo-stonetrail-villas-9c2758.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-transparent-e8074b4379d9c05db68cae16f58d36d5/logo-edit-3832d5cc-e8074b.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-solid-40b7db5a1656d439a6fab94c5f833e69/logo-edit-3832d5cc-40b7db.png"
+    },
+    "reversedUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-transparent-9997aacef27fa8397864b3fdcad83cbe/logo-stonetrail-villas-9997aa.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-reversed-6c693ab10e539adeebb5b38e06b4b74d/logo-stonetrail-villas-6c693a.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-transparent-e8074b4379d9c05db68cae16f58d36d5/logo-edit-3832d5cc-e8074b.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-reversed-8c9f03d2ad3d7a684f8588f98cd967c4/logo-edit-3832d5cc-8c9f03.png"
+    },
+    "reversedSolidUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-transparent-9997aacef27fa8397864b3fdcad83cbe/logo-stonetrail-villas-9997aa.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-reversed-solid-719a643ac2ac765c644740e9cb7cecec/logo-stonetrail-villas-719a64.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-transparent-e8074b4379d9c05db68cae16f58d36d5/logo-edit-3832d5cc-e8074b.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-reversed-solid-43292309192f9d2da13c524efd41fb55/logo-edit-3832d5cc-432923.png"
+    },
+    "mockupUrlMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-transparent-9997aacef27fa8397864b3fdcad83cbe/logo-stonetrail-villas-9997aa.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-mockup-1e81037ec3dde97b4d341aff7b18c52c/logo-stonetrail-villas-1e8103.png",
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-transparent-e8074b4379d9c05db68cae16f58d36d5/logo-edit-3832d5cc-e8074b.png": "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-mockup-3efb44d612cad9af79e90e64137f8460/logo-edit-3832d5cc-3efb44.png"
+    },
+    "logoSourceMap": {
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-608610d056454f26fefb5fdc418002ba/logo-stonetrail-villas-608610.png": {
+        "sessionId": "f617727d-cc09-41b5-b729-d3124801a044",
+        "logoId": "ec6a21e4"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-4f375c873e9433de28e0cfb2d6adcf80/logo-stonetrail-villas-4f375c.png": {
+        "sessionId": "f617727d-cc09-41b5-b729-d3124801a044",
+        "logoId": "8237fcff"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-a45bbb2097dabaf454116864b1fba567/logo-stonetrail-villas-a45bbb.png": {
+        "sessionId": "f617727d-cc09-41b5-b729-d3124801a044",
+        "logoId": "d70ae7dd"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/f617727d-cc09-41b5-b729-d3124801a044/vertical-transparent-3447f8d7e37730999e5b243bc1476c51/logo-stonetrail-villas-3447f8.png": {
+        "sessionId": "f617727d-cc09-41b5-b729-d3124801a044",
+        "logoId": "8c2885a7"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/15032793-eb95-40ab-a392-4057dacbd08f/vertical-transparent-9997aacef27fa8397864b3fdcad83cbe/logo-stonetrail-villas-9997aa.png": {
+        "sessionId": "15032793-eb95-40ab-a392-4057dacbd08f",
+        "logoId": "3832d5cc"
+      },
+      "https://isteam.wsimg.com/genai-assistant/logoagent/customer/5e70a3e2-28a5-4b38-b4bd-7117f8fb079d/session/cfe5823b-4c1d-4a17-bff7-df1a797d96d0/vertical-transparent-e8074b4379d9c05db68cae16f58d36d5/logo-edit-3832d5cc-e8074b.png": {
+        "sessionId": "cfe5823b-4c1d-4a17-bff7-df1a797d96d0",
+        "logoId": "01fc1ed3"
+      }
+    },
+    "userModified": true,
+    "createdAt": "2026-04-29T01:51:43.849Z",
+    "lastUpdated": "2026-05-14T21:49:24.575Z"
+  },
+  "pages/rooms/hero": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/2267444976",
+    "searchQuery": "luxury Caribbean villa private pool terrace ocean view",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/2228611883",
+      "https://img1.wsimg.com/isteam/getty/2243934918",
+      "https://img1.wsimg.com/isteam/getty/2260283947"
+    ],
+    "userModified": true,
+    "createdAt": "2026-04-29T01:56:10.560Z",
+    "lastUpdated": "2026-04-29T02:08:30.818Z",
+    "gettyId": "2267444976",
+    "alternativeGettyIds": [
+      "2228611883",
+      "2243934918",
+      "2260283947"
+    ],
+    "requestedSize": {
+      "width": 1920,
+      "height": 800,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "compositions": "wide_shot",
+    "moods": "warm,vivid",
+    "minimumSize": "large"
+  },
+  "pages/rooms/ocean-view-villa": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/507832553",
+    "searchQuery": "luxury villa bedroom panoramic ocean view Caribbean",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/1438330819",
+      "https://img1.wsimg.com/isteam/getty/2212117004",
+      "https://img1.wsimg.com/isteam/getty/2172168681"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:56:16.345Z",
+    "lastUpdated": "2026-04-29T01:56:16.345Z",
+    "gettyId": "507832553",
+    "alternativeGettyIds": [
+      "1438330819",
+      "2212117004",
+      "2172168681"
+    ],
+    "requestedSize": {
+      "width": 900,
+      "height": 650,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "warm"
+  },
+  "pages/rooms/hillside-suite": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/2249466249",
+    "searchQuery": "boutique hotel suite tropical garden pool terrace",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/2152717093",
+      "https://img1.wsimg.com/isteam/getty/1215148272",
+      "https://img1.wsimg.com/isteam/getty/1774908726"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:56:22.257Z",
+    "lastUpdated": "2026-04-29T01:56:22.257Z",
+    "gettyId": "2249466249",
+    "alternativeGettyIds": [
+      "2152717093",
+      "1215148272",
+      "1774908726"
+    ],
+    "requestedSize": {
+      "width": 900,
+      "height": 650,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "natural,warm"
+  },
+  "pages/rooms/garden-retreat": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/1406958029",
+    "searchQuery": "tropical garden villa secluded lush greenery Caribbean",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/2232995755",
+      "https://img1.wsimg.com/isteam/getty/2261026724",
+      "https://img1.wsimg.com/isteam/getty/2162130265"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:56:29.201Z",
+    "lastUpdated": "2026-04-29T01:56:29.201Z",
+    "gettyId": "1406958029",
+    "alternativeGettyIds": [
+      "2232995755",
+      "2261026724",
+      "2162130265"
+    ],
+    "requestedSize": {
+      "width": 900,
+      "height": 650,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "natural"
+  },
+  "pages/destination/hero": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/2160481209",
+    "searchQuery": "St Vincent Grenadines turquoise beach tropical island paradise",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/1396513245",
+      "https://img1.wsimg.com/isteam/getty/1938684740",
+      "https://img1.wsimg.com/isteam/getty/1051588002",
+      "https://img1.wsimg.com/isteam/getty/155374581"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:56:36.599Z",
+    "lastUpdated": "2026-04-29T01:56:36.599Z",
+    "gettyId": "2160481209",
+    "alternativeGettyIds": [
+      "1396513245",
+      "1938684740",
+      "1051588002",
+      "155374581"
+    ],
+    "requestedSize": {
+      "width": 1920,
+      "height": 800,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "compositions": "wide_shot",
+    "moods": "vivid,warm",
+    "minimumSize": "large"
+  },
+  "pages/destination/sailing": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/2160481209",
+    "searchQuery": "sailing yacht Caribbean turquoise water Grenadines",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/1517582608",
+      "https://img1.wsimg.com/isteam/getty/1932018127"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:56:41.508Z",
+    "lastUpdated": "2026-04-29T01:56:41.508Z",
+    "gettyId": "2160481209",
+    "alternativeGettyIds": [
+      "1517582608",
+      "1932018127"
+    ],
+    "requestedSize": {
+      "width": 700,
+      "height": 500,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "vivid,warm"
+  },
+  "pages/destination/volcano": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/2155643769",
+    "searchQuery": "tropical volcanic island lush rainforest Caribbean hiking",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/2155643662"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:56:52.318Z",
+    "lastUpdated": "2026-04-29T01:56:52.318Z",
+    "gettyId": "2155643769",
+    "alternativeGettyIds": [
+      "2155643662"
+    ],
+    "requestedSize": {
+      "width": 700,
+      "height": 500,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "natural,vivid"
+  },
+  "pages/destination/dining": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/1481521004",
+    "searchQuery": "Caribbean seafood restaurant beachfront tropical dining",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/2255583746",
+      "https://img1.wsimg.com/isteam/getty/2210618663"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:56:58.221Z",
+    "lastUpdated": "2026-04-29T01:56:58.221Z",
+    "gettyId": "1481521004",
+    "alternativeGettyIds": [
+      "2255583746",
+      "2210618663"
+    ],
+    "requestedSize": {
+      "width": 700,
+      "height": 500,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "warm"
+  },
+  "pages/about/team": {
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/2245567937",
+    "searchQuery": "boutique hotel owner couple Caribbean tropical property",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/533517901",
+      "https://img1.wsimg.com/isteam/getty/1393885905",
+      "https://img1.wsimg.com/isteam/getty/2164225315"
+    ],
+    "userModified": false,
+    "createdAt": "2026-04-29T01:57:06.061Z",
+    "lastUpdated": "2026-04-29T01:57:06.061Z",
+    "gettyId": "2245567937",
+    "alternativeGettyIds": [
+      "533517901",
+      "1393885905",
+      "2164225315"
+    ],
+    "requestedSize": {
+      "width": 800,
+      "height": 600,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "moods": "warm,natural",
+    "numberOfPeople": "two"
+  },
+  "pages/destination/i-love-svg-sign-at-christmas": {
+    "mediaType": "image",
+    "currentUrl": "/airo-assets/uploads/pages-destination-i-love-svg-sign-at-christmas-7972f690.png",
+    "searchQuery": "",
+    "alternatives": [
+      "/airo-assets/uploads/pages-destination-i-love-svg-sign-at-christmas-7972f690.png"
+    ],
+    "userModified": false,
+    "sourceRef": "src/pages/destination.tsx:362",
+    "createdAt": "2026-06-08T12:06:41.224Z",
+    "lastUpdated": "2026-06-08T12:06:41.224Z"
+  },
+  "blog/st-vincent-villa-travel-guide": {
+    "requestedSize": {
+      "width": 1200,
+      "height": 630,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/1938684740",
+    "searchQuery": "St Vincent Grenadines tropical island travel",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/1396513245",
+      "https://img1.wsimg.com/isteam/getty/2160481209"
+    ],
+    "userModified": false,
+    "createdAt": "2026-08-08T08:26:21.028Z",
+    "lastUpdated": "2026-08-08T08:26:21.028Z",
+    "gettyId": "1938684740",
+    "alternativeGettyIds": [
+      "1396513245",
+      "2160481209"
+    ]
+  },
+  "pages/lp/book-direct-hero": {
+    "requestedSize": {
+      "width": 1920,
+      "height": 1080,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/2152372567",
+    "searchQuery": "Caribbean villa infinity pool ocean sunset luxury",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/1192055565",
+      "https://img1.wsimg.com/isteam/getty/1438673232",
+      "https://img1.wsimg.com/isteam/getty/2110310187",
+      "https://img1.wsimg.com/isteam/getty/130408314"
+    ],
+    "userModified": false,
+    "createdAt": "2026-08-08T08:26:22.731Z",
+    "lastUpdated": "2026-08-08T08:32:10.241Z",
+    "gettyId": "2152372567",
+    "alternativeGettyIds": [
+      "1192055565",
+      "1438673232",
+      "2110310187",
+      "130408314"
+    ]
+  },
+  "blog/why-book-direct-stonetrail-villas": {
+    "requestedSize": {
+      "width": 1200,
+      "height": 630,
+      "fit": "cover"
+    },
+    "orientations": "horizontal",
+    "mediaType": "image",
+    "currentUrl": "https://img1.wsimg.com/isteam/getty/2245323506",
+    "searchQuery": "hotel concierge personal service Caribbean hospitality",
+    "alternatives": [
+      "https://img1.wsimg.com/isteam/getty/1428674899",
+      "https://img1.wsimg.com/isteam/getty/2183861954",
+      "https://img1.wsimg.com/isteam/getty/2151855814",
+      "https://img1.wsimg.com/isteam/getty/1372036318"
+    ],
+    "userModified": false,
+    "createdAt": "2026-08-08T08:26:24.129Z",
+    "lastUpdated": "2026-08-08T08:32:22.417Z",
+    "gettyId": "2245323506",
+    "alternativeGettyIds": [
+      "1428674899",
+      "2183861954",
+      "2151855814",
+      "1372036318"
+    ]
+  },
+  "temp/blog-content-reference": {
+    "mediaType": "image",
+    "currentUrl": "/airo-assets/uploads/temp-blog-content-reference-bdfdc368.png",
+    "searchQuery": "compensation and performance bonuses interface",
+    "alternatives": [],
+    "userModified": true,
+    "createdAt": "2026-08-29T14:15:01.726Z",
+    "lastUpdated": "2026-08-29T14:15:01.726Z",
+    "uploadSources": {
+      "/airo-assets/uploads/temp-blog-content-reference-bdfdc368.png": "s45biwitgt_1788012750685_file_OWT9vAddhk.png"
+    },
+    "uploadContentHash": "2277c981d2f9c1ae9e2fbb8d870cea4385c4a05c4406bab84adb1de275a11a68",
+    "caption": "compensation and performance bonuses interface"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "Accommodations — Garden Retreat",
+    "heading": "Garden Family Villa",
+    "tagline": "Space, stone, and a kitchen that feels like home"
+  },
+  "overview": {
+    "eyebrow": "Overview",
+    "body1": "The Garden Family Villa is a spacious 2-bedroom retreat set within a lush tropical garden — open-plan living, a fully equipped kitchen, and stone walls that keep the space cool and characterful. Designed for families who want space without sacrificing style.",
+    "body2": "With two bedrooms, generous living areas, and a private garden setting, this villa offers the freedom of a home away from home in one of the Caribbean's most beautiful destinations."
+  },
+  "gallery": {
+    "eyebrow": "Photo Gallery",
+    "heading": "Inside the Villa"
+  },
+  "amenities": {
+    "eyebrow": "Included",
+    "heading": "Villa Amenities"
+  },
+  "cta": {
+    "eyebrow": "Reserve Your Stay",
+    "heading": "Book the Garden Family Villa",
+    "primaryLabel": "Book Now",
+    "secondaryLabel": "Enquire"
+  }
+}

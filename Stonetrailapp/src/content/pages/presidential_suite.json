@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "Accommodations — 04",
+    "heading": "Presidential Suite",
+    "tagline": "The ultimate expression of Caribbean luxury"
+  },
+  "overview": {
+    "eyebrow": "Overview",
+    "body1": "The Presidential Suite is the pinnacle of the Stonetrail Villas experience — a private king bedroom, a dedicated sitting room, a dressing area, and bespoke concierge service that anticipates your every need.",
+    "body2": "Reserved for guests who demand the very best, the Presidential Suite offers an unmatched level of privacy, comfort, and personalised service in the heart of St. Vincent and the Grenadines."
+  },
+  "gallery": {
+    "eyebrow": "Photo Gallery",
+    "heading": "Inside the Suite"
+  },
+  "amenities": {
+    "eyebrow": "Included",
+    "heading": "Suite Amenities"
+  },
+  "cta": {
+    "eyebrow": "Reserve Your Stay",
+    "heading": "Book the Presidential Suite",
+    "primaryLabel": "Book Now",
+    "secondaryLabel": "Enquire"
+  }
+}

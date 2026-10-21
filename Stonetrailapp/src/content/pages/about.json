@@ -1,0 +1,68 @@
+{
+  "hero": {
+    "eyebrow": "Our Story",
+    "heading": "A Love Letter to\nthe Caribbean"
+  },
+  "story": {
+    "eyebrow": "Founded with Purpose",
+    "heading": "Built Slowly, Built to Last",
+    "paragraphs": [
+      {
+        "id": "p1",
+        "text": "Stonetrail Villas is a refined boutique retreat in the heart of the tourism district of St. Vincent and the Grenadines — thoughtfully created for discerning travellers who value privacy, comfort, and authenticity. Set within a serene island setting, our property offers an intimate alternative to large resorts, where understated luxury meets the warmth of personalised Caribbean hospitality."
+      },
+      {
+        "id": "p2",
+        "text": "Founded and led by hands-on owners, Stonetrail Villas reflects a deeply personal vision: to create a place where every detail is intentional and every guest feels genuinely cared for. Ownership remains actively involved in the daily operations of the property, ensuring exceptional standards, thoughtful service, and an experience guided by integrity rather than volume."
+      },
+      {
+        "id": "p3",
+        "text": "Our accommodations are carefully designed to balance modern elegance with relaxed island living. From meticulously maintained spaces to attentive, discreet service, each stay is shaped by a commitment to comfort, calm, and consistency. We believe true luxury is found not in excess, but in quality, privacy, and the feeling of being well looked after."
+      },
+      {
+        "id": "p4",
+        "text": "Rooted in the local community and inspired by the natural beauty of St. Vincent, we welcome guests seeking a refined escape — whether for rest, business, or an extended staycation. Many of our guests return year after year, drawn by an atmosphere that feels both exclusive and effortlessly welcoming. At Stonetrail Villas, hospitality is personal, standards are uncompromising, and every stay is treated as a privilege."
+      }
+    ]
+  },
+  "values": {
+    "eyebrow": "What We Believe",
+    "heading": "Our Values",
+    "items": [
+      {
+        "id": "v1",
+        "num": "01",
+        "title": "Privacy Above All",
+        "desc": "Every villa is a private sanctuary. We limit our guest count intentionally so that every stay feels exclusive and unhurried."
+      },
+      {
+        "id": "v2",
+        "num": "02",
+        "title": "Rooted in the Islands",
+        "desc": "We source locally, employ locally, and celebrate the culture and cuisine of St. Vincent and the Grenadines in everything we do."
+      },
+      {
+        "id": "v3",
+        "num": "03",
+        "title": "Sustainable Luxury",
+        "desc": "From solar energy to rainwater harvesting, we are committed to treading lightly on the island we love — without compromising on comfort."
+      },
+      {
+        "id": "v4",
+        "num": "04",
+        "title": "Personal Service",
+        "desc": "Our small team knows every guest by name. From the moment you enquire to the moment you depart, you are in the care of people who genuinely care."
+      }
+    ]
+  },
+  "quote": {
+    "eyebrow": "The Stonetrail Way",
+    "text": "\"We are your trails to the exceptional — hospitality that is personal, standards that are uncompromising.\""
+  },
+  "cta": {
+    "eyebrow": "We'd Love to Host You",
+    "heading": "Come Stay With Us",
+    "primaryLabel": "Book Your Stay",
+    "secondaryLabel": "Get in Touch"
+  }
+}

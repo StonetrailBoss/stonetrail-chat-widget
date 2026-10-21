@@ -1,0 +1,16 @@
+{
+  "hero": {
+    "eyebrow": "Get in Touch",
+    "heading": "Contact Us",
+    "subheading": "Our team responds to all enquiries within 24 hours"
+  },
+  "info": {
+    "body": "Our team is available to assist with reservations, concierge requests, and any questions about your stay. We aim to respond to all enquiries within 24 hours.",
+    "followLabel": "Follow Us"
+  },
+  "form": {
+    "successHeading": "Message Received",
+    "successBody": "Thank you for reaching out. A member of our team will be in touch within 24 hours.",
+    "submitLabel": "Send Message"
+  }
+}

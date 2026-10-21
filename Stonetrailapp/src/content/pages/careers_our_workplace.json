@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "eyebrow": "Careers at Stonetrail Villas",
+    "heading": "Our Workplace",
+    "subheading": "A place where hospitality is a calling, not just a job."
+  },
+  "intro": {
+    "heading": "We believe the guest experience begins with the team experience.",
+    "body": "At Stonetrail Villas, we have built a workplace where people feel valued, trusted, and inspired to do their best work every day. Our team is small enough that every person matters — and large enough that there is always room to grow."
+  },
+  "values": {
+    "eyebrow": "What we stand for",
+    "heading": "Our Values",
+    "items": [
+      {
+        "id": "v1",
+        "title": "Care & Belonging",
+        "body": "We treat every team member as family. A culture of genuine care — for guests, for each other, and for the community — is the foundation everything else is built on."
+      },
+      {
+        "id": "v2",
+        "title": "Collaboration",
+        "body": "Great hospitality is a team effort. We share knowledge, support one another across departments, and celebrate wins together."
+      },
+      {
+        "id": "v3",
+        "title": "Sustainability",
+        "body": "We are stewards of St. Vincent and the Grenadines. Our team leads by example — protecting the natural beauty that makes this place extraordinary."
+      },
+      {
+        "id": "v4",
+        "title": "Excellence",
+        "body": "We hold ourselves to a high standard — not out of pressure, but out of pride. Every detail matters because our guests deserve nothing less."
+      }
+    ]
+  },
+  "perks": {
+    "eyebrow": "Benefits",
+    "heading": "What We Offer",
+    "items": [
+      {
+        "id": "p1",
+        "text": "Competitive compensation & performance bonuses"
+      },
+      {
+        "id": "p3",
+        "text": "Ongoing training & professional development"
+      },
+      {
+        "id": "p4",
+        "text": "A supportive, family-owned work environment"
+      },
+      {
+        "id": "p5",
+        "text": "Opportunities for advancement within the property"
+      },
+      {
+        "id": "p6",
+        "text": "Staff recognition programmes"
+      }
+    ]
+  },
+  "cta": {
+    "heading": "Ready to join the team?",
+    "label": "View Open Positions"
+  }
+}

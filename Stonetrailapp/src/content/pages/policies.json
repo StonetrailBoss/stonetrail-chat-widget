@@ -1,0 +1,164 @@
+{
+  "hero": {
+    "eyebrow": "Legal & Policies",
+    "heading": "Policies"
+  },
+  "footer": {
+    "lastUpdated": "Last updated: April 2026"
+  },
+  "sections": [
+    {
+      "id": "house-rules",
+      "num": "01",
+      "title": "House Rules",
+      "content": [
+        {
+          "id": "hr1",
+          "heading": "Check-in & Check-out",
+          "text": "Check-in is from 3:00 PM. Check-out is by 11:00 AM. Early check-in and late check-out may be arranged subject to availability — please enquire in advance."
+        },
+        {
+          "id": "hr2",
+          "heading": "Quiet Hours",
+          "text": "We ask all guests to observe quiet hours between 10:00 PM and 8:00 AM out of respect for neighbouring guests and the surrounding community."
+        },
+        {
+          "id": "hr3",
+          "heading": "Smoking",
+          "text": "Stonetrail Villas is a non-smoking property. Smoking is not permitted inside any villa or within 5 metres of any building. Designated outdoor areas are available."
+        },
+        {
+          "id": "hr4",
+          "heading": "Pets",
+          "text": "We regret that pets are not permitted at Stonetrail Villas at this time."
+        },
+        {
+          "id": "hr5",
+          "heading": "Events & Gatherings",
+          "text": "Private events and gatherings of more than 8 persons require prior written approval from management. Additional fees may apply."
+        },
+        {
+          "id": "hr6",
+          "heading": "Damage",
+          "text": "Guests are responsible for any damage caused to the property, furnishings, or equipment during their stay. A security deposit may be required at check-in."
+        }
+      ]
+    },
+    {
+      "id": "cancellation",
+      "num": "02",
+      "title": "Cancellation Policy",
+      "content": [
+        {
+          "id": "cp1",
+          "heading": "Standard Bookings",
+          "text": "Cancellations made 30 or more days prior to arrival will receive a full refund of any deposit paid, less a 5% processing fee."
+        },
+        {
+          "id": "cp2",
+          "heading": "Late Cancellations",
+          "text": "Cancellations made 15–29 days prior to arrival will forfeit 50% of the total booking value. Cancellations made within 14 days of arrival are non-refundable."
+        },
+        {
+          "id": "cp3",
+          "heading": "No-Show",
+          "text": "In the event of a no-show, the full booking value will be charged and no refund will be issued."
+        },
+        {
+          "id": "cp4",
+          "heading": "Modifications",
+          "text": "Date changes are subject to availability and must be requested at least 14 days prior to the original arrival date. Rate differences may apply."
+        },
+        {
+          "id": "cp5",
+          "heading": "Force Majeure",
+          "text": "In the event of circumstances beyond our control (natural disasters, government travel restrictions, etc.), we will work with guests to reschedule or issue a credit note."
+        },
+        {
+          "id": "cp6",
+          "heading": "Travel Insurance",
+          "text": "We strongly recommend that all guests purchase comprehensive travel insurance to protect against unforeseen cancellations."
+        }
+      ]
+    },
+    {
+      "id": "privacy",
+      "num": "03",
+      "title": "Privacy Policy",
+      "content": [
+        {
+          "id": "pp1",
+          "heading": "Data Controller",
+          "text": "Your personal data is controlled by The Ballantyne Ltd, trading as Stonetrail Villas, Indian Bay, Villa, St. Vincent and the Grenadines, VC0100."
+        },
+        {
+          "id": "pp2",
+          "heading": "Information We Collect",
+          "text": "We collect personal information you provide when making a reservation or enquiry, including your name, email address, phone number, and payment details. We may also collect information about your stay preferences."
+        },
+        {
+          "id": "pp3",
+          "heading": "How We Use Your Information",
+          "text": "Your information is used solely to process your reservation, communicate with you about your stay, and improve our services. We do not sell or share your personal data with third parties for marketing purposes."
+        },
+        {
+          "id": "pp4",
+          "heading": "Data Security",
+          "text": "We take reasonable measures to protect your personal information from unauthorised access, disclosure, or misuse. Payment information is processed through secure, PCI-compliant systems."
+        },
+        {
+          "id": "pp5",
+          "heading": "Cookies",
+          "text": "Our website uses cookies to improve your browsing experience. You may disable cookies in your browser settings, though this may affect certain website functionality."
+        },
+        {
+          "id": "pp6",
+          "heading": "Your Rights",
+          "text": "You have the right to access, correct, or request deletion of your personal data at any time. Please contact us at info@stonetrailvillas.com to exercise these rights."
+        },
+        {
+          "id": "pp7",
+          "heading": "Contact",
+          "text": "For any privacy-related enquiries, please contact our Data Protection Officer at info@stonetrailvillas.com."
+        }
+      ]
+    },
+    {
+      "id": "terms",
+      "num": "04",
+      "title": "Terms & Conditions",
+      "content": [
+        {
+          "id": "tc1",
+          "heading": "Legal Entity",
+          "text": "These terms and conditions are issued by The Ballantyne Ltd, a company registered in St. Vincent and the Grenadines, trading as Stonetrail Villas."
+        },
+        {
+          "id": "tc2",
+          "heading": "Booking Confirmation",
+          "text": "A reservation is confirmed only upon receipt of a deposit and written confirmation from Stonetrail Villas. We reserve the right to decline any booking at our discretion."
+        },
+        {
+          "id": "tc3",
+          "heading": "Rates",
+          "text": "All rates are quoted in USD and are subject to change without notice. Confirmed bookings are protected from rate changes. Rates do not include applicable taxes unless stated."
+        },
+        {
+          "id": "tc4",
+          "heading": "Liability",
+          "text": "The Ballantyne Ltd T/A Stonetrail Villas accepts no liability for loss, damage, or injury to guests or their property during their stay, except where caused by our negligence."
+        },
+        {
+          "id": "tc5",
+          "heading": "Governing Law",
+          "text": "These terms and conditions are governed by the laws of St. Vincent and the Grenadines. Any disputes shall be subject to the exclusive jurisdiction of the courts of St. Vincent and the Grenadines."
+        },
+        {
+          "id": "tc6",
+          "heading": "Amendments",
+          "text": "The Ballantyne Ltd T/A Stonetrail Villas reserves the right to amend these terms and conditions at any time. The most current version will always be available on our website."
+        }
+      ]
+    }
+  ]
+}

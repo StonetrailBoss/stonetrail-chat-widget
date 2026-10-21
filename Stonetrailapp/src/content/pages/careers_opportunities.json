@@ -1,0 +1,150 @@
+{
+  "hero": {
+    "eyebrow": "Careers at Stonetrail Villas",
+    "heading": "Open Positions",
+    "subheading": "We are always looking for talented, passionate people to join our team."
+  },
+  "jobs": [
+    {
+      "id": "villa-attendant",
+      "title": "Villa Attendant",
+      "department": "Housekeeping",
+      "type": "Full-time",
+      "location": "Stonetrail Villas, St. Vincent",
+      "summary": "Maintain the immaculate presentation of our villas and ensure every guest arrives to a flawless, welcoming space.",
+      "responsibilities": [
+        {
+          "id": "r1",
+          "text": "Prepare and turn over villas to the highest standard before each guest arrival"
+        },
+        {
+          "id": "r2",
+          "text": "Perform daily housekeeping services with discretion and attention to detail"
+        },
+        {
+          "id": "r3",
+          "text": "Replenish amenities and report maintenance issues promptly"
+        },
+        {
+          "id": "r4",
+          "text": "Assist with laundry operations and linen management"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "q1",
+          "text": "Previous housekeeping or villa attendant experience preferred"
+        },
+        {
+          "id": "q2",
+          "text": "Strong attention to detail and pride in your work"
+        },
+        {
+          "id": "q3",
+          "text": "Ability to work independently and as part of a team"
+        },
+        {
+          "id": "q4",
+          "text": "Reliable, punctual, and professional"
+        }
+      ]
+    },
+    {
+      "id": "guest-experience-host",
+      "title": "Guest Experience Host",
+      "department": "Front of House",
+      "type": "Full-time",
+      "location": "Stonetrail Villas, St. Vincent",
+      "summary": "Be the face of Stonetrail Villas — welcoming guests, anticipating their needs, and crafting memorable moments throughout their stay.",
+      "responsibilities": [
+        {
+          "id": "r1",
+          "text": "Greet and check in guests with warmth and professionalism"
+        },
+        {
+          "id": "r2",
+          "text": "Coordinate arrival logistics, villa orientations, and departure arrangements"
+        },
+        {
+          "id": "r3",
+          "text": "Respond to guest requests and resolve issues swiftly and graciously"
+        },
+        {
+          "id": "r4",
+          "text": "Liaise with housekeeping, maintenance, and food & beverage teams"
+        },
+        {
+          "id": "r5",
+          "text": "Curate personalised recommendations for dining, activities, and island experiences"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "q1",
+          "text": "Minimum 2 years in a guest-facing hospitality role"
+        },
+        {
+          "id": "q2",
+          "text": "Excellent communication and interpersonal skills"
+        },
+        {
+          "id": "q3",
+          "text": "Calm under pressure with a genuine passion for service"
+        },
+        {
+          "id": "q4",
+          "text": "Familiarity with property management systems is an asset"
+        }
+      ]
+    },
+    {
+      "id": "maintenance-technician",
+      "title": "Maintenance Technician",
+      "department": "Engineering",
+      "type": "Full-time",
+      "location": "Stonetrail Villas, St. Vincent",
+      "summary": "Keep our villas and grounds in exceptional condition — ensuring every system, fixture, and space meets the standard our guests expect.",
+      "responsibilities": [
+        {
+          "id": "r1",
+          "text": "Perform preventive and reactive maintenance across all villa units and common areas"
+        },
+        {
+          "id": "r2",
+          "text": "Diagnose and repair electrical, plumbing, and HVAC issues"
+        },
+        {
+          "id": "r3",
+          "text": "Maintain pool systems, landscaping equipment, and outdoor infrastructure"
+        },
+        {
+          "id": "r4",
+          "text": "Document work orders and communicate status updates to management"
+        }
+      ],
+      "requirements": [
+        {
+          "id": "q1",
+          "text": "Trade certification in electrical, plumbing, or general maintenance"
+        },
+        {
+          "id": "q2",
+          "text": "Minimum 3 years of relevant experience"
+        },
+        {
+          "id": "q3",
+          "text": "Ability to work flexible hours including weekends"
+        },
+        {
+          "id": "q4",
+          "text": "Strong problem-solving skills and a proactive approach"
+        }
+      ]
+    }
+  ],
+  "speculative": {
+    "heading": "Don't see the right fit?",
+    "body": "We welcome speculative applications from exceptional candidates. Send us your CV and a short note about what you bring.",
+    "label": "Get in touch"
+  }
+}

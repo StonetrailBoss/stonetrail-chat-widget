@@ -1,0 +1,20 @@
+{
+  "hero": {
+    "eyebrow": "Accommodations",
+    "heading": "Villas & Suites",
+    "subheading": "Three private sanctuaries, each a world unto itself"
+  },
+  "intro": {
+    "body": "Each accommodation at Stonetrail Villas is a private world unto itself — thoughtfully designed to honour the natural beauty of St. Vincent and the Grenadines while providing every comfort of a luxury retreat."
+  },
+  "amenities": {
+    "eyebrow": "Included in Every Stay",
+    "heading": "Villa Amenities"
+  },
+  "cta": {
+    "eyebrow": "Ready to Arrive?",
+    "heading": "Reserve Your Villa Today",
+    "primaryLabel": "Book Now",
+    "secondaryLabel": "Ask a Question"
+  }
+}

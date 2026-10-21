@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "Accommodations — 05",
+    "heading": "Deluxe King Room",
+    "tagline": "Refined comfort with a signature Caribbean touch"
+  },
+  "overview": {
+    "eyebrow": "Overview",
+    "body1": "The Deluxe King Room is a beautifully appointed retreat that blends premium comfort with the warmth of Caribbean craftsmanship. A plush king bed, refined finishes, and an en-suite bathroom create a space that is both elegant and deeply restful.",
+    "body2": "Ideal for couples or solo travellers, the Deluxe King Room offers everything you need for a comfortable, stylish stay — with the full concierge service of Stonetrail Villas at your disposal."
+  },
+  "gallery": {
+    "eyebrow": "Photo Gallery",
+    "heading": "Inside the Room"
+  },
+  "amenities": {
+    "eyebrow": "Included",
+    "heading": "Room Amenities"
+  },
+  "cta": {
+    "eyebrow": "Reserve Your Stay",
+    "heading": "Book the Deluxe King Room",
+    "primaryLabel": "Book Now",
+    "secondaryLabel": "Enquire"
+  }
+}

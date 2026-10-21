@@ -1,0 +1,165 @@
+{
+  "hero": {
+    "eyebrow": "St. Vincent & The Grenadines",
+    "heading": "Your Personal Sanctuary\nin the Caribbean",
+    "subheading": "A boutique collection of private villas where opulence meets the untouched beauty of the Eastern Caribbean",
+    "ctaExplore": "Explore Villas",
+    "ctaBook": "Book Now"
+  },
+  "about": {
+    "eyebrow": "About Stonetrail Villas",
+    "heading": "Tucked Away in One of\nthe World's Most\nBeautiful Islands",
+    "body1": "Nestled in St. Vincent and the Grenadines, one of the last unspoiled corners of the Caribbean, Stonetrail Villas offers a serene escape that blends opulence with tranquility.",
+    "body2": "Explore the islands through private lounges and curated excursions, indulge in relaxation, and savour exquisite cuisine with breathtaking views. Top-notch Caribbean hospitality through personalised butler service combined with breathtaking nature — promising a tranquil and luxurious experience like no other.",
+    "cta": "Our Story"
+  },
+  "villas": {
+    "eyebrow": "Accommodations",
+    "heading": "Most Frequently\nBooked Villas",
+    "cta": "Discover All Villas",
+    "items": [
+      {
+        "id": "superior-villa",
+        "name": "Superior Villa",
+        "tagline": "Vaulted ceilings, stone walls, and open-plan luxury",
+        "rate": "From $185 / night",
+        "guests": "Up to 4 Guests",
+        "image": "/assets/superior-living1.JPG",
+        "href": "/rooms/superior-villa#gallery"
+      },
+      {
+        "id": "honeymoon-suite",
+        "name": "Honeymoon Suite",
+        "tagline": "Romance, seclusion, and effortless luxury",
+        "rate": "From $165 / night",
+        "guests": "2 Guests",
+        "image": "/assets/honeymoon rm1.JPG",
+        "href": "/rooms/honeymoon-suite#gallery"
+      },
+      {
+        "id": "garden-family-villa",
+        "name": "Garden Retreat — Family Villa",
+        "tagline": "Spacious, lush, and designed for families",
+        "rate": "From $168 / night",
+        "guests": "Up to 4 Guests",
+        "image": "/assets/garden retreat family 5.JPG",
+        "href": "/rooms/garden-family-villa#gallery"
+      },
+      {
+        "id": "garden-junior-suite",
+        "name": "Garden Retreat — Junior Suite",
+        "tagline": "Intimate, romantic, and beautifully appointed",
+        "rate": "From $155 / night",
+        "guests": "2 Guests",
+        "image": "/assets/garden retreat Junior suite 10.JPG",
+        "href": "/rooms/garden-junior-suite#gallery"
+      },
+      {
+        "id": "presidential-suite",
+        "name": "Presidential Suite",
+        "tagline": "The pinnacle of Caribbean luxury — nothing left to chance",
+        "rate": "From $185 / night",
+        "guests": "2 Guests",
+        "image": "/assets/Presidential_bedroom.jpeg",
+        "href": "/rooms/presidential-suite#gallery"
+      },
+      {
+        "id": "deluxe-king",
+        "name": "Deluxe King Room",
+        "tagline": "Refined comfort with a signature Caribbean touch",
+        "rate": "From $165 / night",
+        "guests": "2 Guests",
+        "image": "/assets/deluxe king.jpg",
+        "href": "/rooms/deluxe-king#gallery"
+      }
+    ]
+  },
+  "experiences": {
+    "eyebrow": "Unforgettable Experiences",
+    "heading": "One of the World's\nMost Beautiful Islands",
+    "body": "Where the finest hospitality meets breathtaking natural beauty. Sail the Tobago Cays, hike La Soufrière, and discover hidden beaches only our guests can reach.",
+    "cta": "Discover the Destination"
+  },
+  "promises": {
+    "eyebrow": "The Stonetrail Promise",
+    "heading": "All the Essentials for a\nCosy and Comfortable Stay",
+    "items": [
+      {
+        "id": "maid-service",
+        "num": "01",
+        "title": "Maid Service",
+        "desc": "Your dedicated Stonetrail maid service ensures every request is met with efficiency, warmth, and a personal touch — from arrival to departure."
+      },
+      {
+        "id": "curated-experiences",
+        "num": "02",
+        "title": "Curated Experiences",
+        "desc": "Private sailing, volcanic hikes, island-hopping, and spa treatments — our concierge crafts bespoke itineraries for every guest."
+      },
+      {
+        "id": "privacy",
+        "num": "03",
+        "title": "Privacy is Priority",
+        "desc": "Each villa is a secluded sanctuary designed for quiet solitude. Your hideaway promises comfort, seclusion, and absolute peace."
+      },
+      {
+        "id": "culinary",
+        "num": "04",
+        "title": "Culinary Excellence",
+        "desc": "Savour locally-caught seafood, tropical produce, and Caribbean-inspired cuisine — served in your villa or at our private dining terrace."
+      },
+      {
+        "id": "transfers",
+        "num": "05",
+        "title": "Seamless Transfers",
+        "desc": "From Argyle Airport straight to your villa — and on to hidden beaches and exclusive lounges only our guests can enjoy."
+      },
+      {
+        "id": "amenities",
+        "num": "06",
+        "title": "In-Villa Amenities",
+        "desc": "Every villa is stocked with premium coffee, fine teas, and a complimentary welcome bar to begin your stay in style."
+      }
+    ]
+  },
+  "bookDirect": {
+    "eyebrow": "Book Direct",
+    "heading": "The Best Rate,\nAlways Direct",
+    "body": "When you book directly with Stonetrail Villas, you receive exclusive benefits unavailable through third-party platforms — and the assurance of a personal welcome.",
+    "benefits": [
+      {
+        "id": "best-rate",
+        "text": "Best Rate Guarantee — always lowest when booked direct"
+      },
+      {
+        "id": "welcome-amenity",
+        "text": "Complimentary Welcome Amenity upon arrival"
+      },
+      {
+        "id": "flexible-cancel",
+        "text": "Flexible Cancellation with direct reservations"
+      },
+      {
+        "id": "concierge",
+        "text": "Dedicated Concierge from booking to departure"
+      }
+    ],
+    "cta": "Book Your Stay"
+  },
+  "neighbourhood": {
+    "eyebrow": "Explore the Area",
+    "heading": "Neighbourhood Amenities",
+    "body": "Discover restaurants, beaches, shops, and local attractions within easy reach of Stonetrail Villas."
+  },
+  "finalCta": {
+    "eyebrow": "Begin Your Journey",
+    "heading": "Immerse Yourself in the\nExquisite Beauty of Nature",
+    "cta": "Reserve Your Villa"
+  },
+  "promo": {
+    "eyebrow": "Seasonal Highlight",
+    "title": "Vincy Mas — SVG Carnival",
+    "footer": "June – July · St. Vincent & The Grenadines",
+    "footerCta": "Explore the destination"
+  }
+}

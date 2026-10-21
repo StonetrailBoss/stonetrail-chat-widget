@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Block staff portal from indexing
+Disallow: /staff/
+Disallow: /staff/login
+Disallow: /staff/inventory
+
+# Sitemap
+Sitemap: https://www.stonetrailvillas.com/sitemap.xml

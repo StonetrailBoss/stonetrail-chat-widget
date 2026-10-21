@@ -1,0 +1,38 @@
+{
+  "hero": {
+    "eyebrow": "Careers at Stonetrail Villas",
+    "heading": "Message from the CEO"
+  },
+  "letter": {
+    "eyebrow": "A word from our founder",
+    "paragraphs": [
+      {
+        "id": "p1",
+        "text": "When we built Stonetrail Villas, we made a deliberate choice: to create something rooted in this island, shaped by the people who live here, and guided by a standard of care that guests feel from the moment they arrive."
+      },
+      {
+        "id": "p2",
+        "text": "That standard is only possible because of our team. Every person who works here contributes something irreplaceable — a warmth, a skill, a commitment to doing things right. I do not take that lightly."
+      },
+      {
+        "id": "p3",
+        "text": "We are a small property, and I believe that is one of our greatest strengths. It means every team member is known by name, every contribution is visible, and every voice matters. There is no bureaucracy between an idea and action. If you see a better way to do something, we want to hear it."
+      },
+      {
+        "id": "p4",
+        "text": "We are also a growing property. As we expand, we are looking for people who want to grow with us — not just fill a role, but help shape what Stonetrail Villas becomes. If you take pride in your craft, care deeply about the people around you, and want to be part of something meaningful in the Caribbean hospitality space, I would love to have you on the team."
+      },
+      {
+        "id": "p5",
+        "text": "Thank you for considering us. I hope to welcome you soon."
+      }
+    ],
+    "signatureName": "A.D. Ballantyne",
+    "signatureTitle": "Founder & Chief Executive Officer",
+    "signatureLocation": "Stonetrail Villas, St. Vincent & The Grenadines"
+  },
+  "cta": {
+    "heading": "Explore open positions",
+    "label": "Career Opportunities"
+  }
+}

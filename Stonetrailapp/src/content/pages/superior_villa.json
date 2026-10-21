@@ -1,0 +1,26 @@
+{
+  "hero": {
+    "eyebrow": "Accommodations — 01",
+    "heading": "Superior Villa",
+    "tagline": "Vaulted ceilings, stone walls, and open-plan luxury"
+  },
+  "overview": {
+    "eyebrow": "Overview",
+    "body1": "The Superior Villa is a masterclass in Caribbean craftsmanship — soaring vaulted timber ceilings, hand-laid stone walls, and an open-plan living and kitchen space that flows seamlessly to the outdoors. Designed for guests who appreciate both space and character.",
+    "body2": "Multiple bedrooms with king beds, a fully equipped kitchen, and generous living areas make this villa ideal for families or groups seeking a private retreat with all the comforts of home — and then some."
+  },
+  "gallery": {
+    "eyebrow": "Photo Gallery",
+    "heading": "Inside the Villa"
+  },
+  "amenities": {
+    "eyebrow": "Included",
+    "heading": "Villa Amenities"
+  },
+  "cta": {
+    "eyebrow": "Reserve Your Stay",
+    "heading": "Book the Superior Villa",
+    "primaryLabel": "Book Now",
+    "secondaryLabel": "Enquire"
+  }
+}

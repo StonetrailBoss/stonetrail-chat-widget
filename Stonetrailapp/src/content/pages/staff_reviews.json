@@ -1,0 +1,29 @@
+{
+  "agentTitle": "Review Response Agent",
+  "agentSubtitle": "Stone Trail Villas · Google Reviews",
+  "welcomeMessage": "Hello! I'm your Google Review Response Assistant for Stone Trail Villas. I can fetch your latest unanswered reviews and draft warm, professional responses in your brand voice.\n\nTap one of the quick actions below or type your request to get started.",
+  "clearedMessage": "Conversation cleared. Ready to help with your Google reviews — what would you like to do?",
+  "inputPlaceholder": "Ask me to fetch reviews, draft responses, or give tips…",
+  "quickActions": [
+    {
+      "id": "qa1",
+      "label": "Check unanswered reviews",
+      "prompt": "Please fetch our latest unanswered Google reviews."
+    },
+    {
+      "id": "qa2",
+      "label": "Draft all responses",
+      "prompt": "Fetch all unanswered reviews and draft a professional response for each one."
+    },
+    {
+      "id": "qa3",
+      "label": "Check all reviews",
+      "prompt": "Fetch all reviews including ones we have already replied to."
+    },
+    {
+      "id": "qa4",
+      "label": "Tips for responding",
+      "prompt": "What are some best practices for responding to Google reviews for a luxury villa resort?"
+    }
+  ]
+}
